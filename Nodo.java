@@ -1,3 +1,4 @@
+import java.lang.Math;
 /**
  * Clase que almacena la informacion de las aristas en el grafo.
  */
@@ -58,6 +59,6 @@ public class Nodo {
 	@Override
 	public int hashCode() {
 
-		return this.id.hashCode();
+		return Math.abs(this.id.hashCode());
 	}
 }
