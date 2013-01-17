@@ -6,11 +6,11 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		Nodo A;
-		int max = 1000;
+		int max = 100000;
 		int colisiones = 0;
 		boolean arr[] = new boolean[max];
 		
-		for (int i = 0; i!=max-250 ; i++){
+		for (int i = 0; i!=max ; i++){
 			A = new Nodo("Nodo_"+i);
 //			System.out.println(A.hashCode()%max);
 			if (arr[A.hashCode()%max]==false){
@@ -22,7 +22,7 @@ public class Main {
 			
 			
 		}
-		System.out.println("Colisiones" + colisiones);
+		System.out.println("Colisiones " + colisiones);
 
 	}
 

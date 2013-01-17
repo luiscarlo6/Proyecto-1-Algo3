@@ -58,7 +58,14 @@ public class Nodo {
 	 */
 	@Override
 	public int hashCode() {
+    	int hash=13;
+    	int len = this.id.length();
+    	for (int i = 0; i < len; i++) {
+    		hash = 37 * hash + this.id.charAt(i);
+    	}
 
-		return Math.abs(this.id.hashCode());
+//		hash = Math.abs(this.id.hashCode());
+    	
+    	return Math.abs(hash);
 	}
 }
