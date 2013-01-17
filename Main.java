@@ -6,13 +6,13 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		Nodo A;
-		int max = 1000000;
+		int max = 1000;
 		int colisiones = 0;
 		ArrDin arr = new ArrDin();
 		
 		for (int i = 0; i!=max ; i++){
 			A = new Nodo("Nodo_"+i);
-			System.out.println("pos "+i+" "+arr.add(A, i));		
+			System.out.println("pos "+i+" "+arr.add(A, i)+"tam arr "+arr.tam());		
 			
 		}
 
