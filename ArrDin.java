@@ -33,6 +33,10 @@ public class ArrDin<E>{
 		return true;
 	}
 	
+	public Object get(int pos){
+		return this.arr[pos];
+	}
+	
 	public void ampliar(){
 		if (!(this.ocupados>=this.actual)){
 			return;			
@@ -44,6 +48,10 @@ public class ArrDin<E>{
 		Object nuevoArr[] = new Object[nuevoTam];
 		
 		System.arraycopy(this.arr, 0, nuevoArr, 0, this.arr.length);
+		
+//		for (int i= 0; i!=this.arr.length;i++){
+//			nuevoArr[i] = this.arr[i];
+//		}
 		this.arr = nuevoArr;
 	}
 	

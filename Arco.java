@@ -10,7 +10,8 @@ public class Arco {
      * Crea una arista entre los vertices src y dst.
      */
     public Arco(String src, String dst) {
-        /* implementar */
+        this.src = new String(src);
+        this.dst = new String(dst);
     }
 
     /**
@@ -27,24 +28,35 @@ public class Arco {
      * Indica si la arista de entrada es igual a this.
      */
     public boolean equals(Object o) {
-        /*implementar*/
-        return false;
+    	Arco a;
+
+		if (o == null)
+			return false;
+
+		if (!(o instanceof Arco))
+			return false;
+
+		a = (Arco) o;
+
+		if (this.src.equalsIgnoreCase(a.getSrc())&&
+			this.dst.equalsIgnoreCase(a.getDst()))
+			return true;
+
+		return false;
     }
 
     /**
      * Retorna el vertice src de la arista.
      */
     public String getSrc() {
-        /*implementar*/
-        return null;
+        return new String(this.src);
     }
 
     /**
      * Retorna el vertice dst de la arista.
      */
     public String getDst() {
-        /* implementar */
-        return null;
+    	return new String(this.dst);
     }
 
     /**
@@ -60,8 +72,18 @@ public class Arco {
      */
     @Override
     public int hashCode() {
-        /* implementar */
-        return 0;
+    	int hash=13;
+    	int len = this.src.length();
+    	for (int i = 0; i < len; i++) {
+    		hash = 37 * hash + this.src.charAt(i);
+    	}
+    	
+    	len = this.dst.length();
+    	for (int i = 0; i < len; i++) {
+    		hash = 37 * hash + this.dst.charAt(i);
+    	}
+
+    	return Math.abs(hash);
     }
 
 }
