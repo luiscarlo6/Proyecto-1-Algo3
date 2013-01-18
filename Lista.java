@@ -47,5 +47,8 @@ public interface Lista<E> {
      * en esta lista.
      */
     public Object[] toArray();
+    
+    
+    public Caja<E> getCaja();
 
 }
