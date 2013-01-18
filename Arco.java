@@ -20,8 +20,8 @@ public class Arco {
      * Crea una arista entre los vertices src y dst.
      */
     public Arco(String src, String dst) {
-        this.src = src;
-        this.dst = dst;
+        this.src = new String(src);
+        this.dst = new String(dst);
     }
 
     /**
@@ -38,24 +38,22 @@ public class Arco {
      * Indica si la arista de entrada es igual a this.
      */
     public boolean equals(Object o) {
-        Arco Temp;
-        
-        if(o==null){
-			 return false;
-        }
-        
-        if (!(o instanceof Nodo)){
-			 return false;
-        }
-        
-        Temp = (Arco) o;
-
-		  if (this.src.equalsIgnoreCase(Temp.src) && this.dst.equalsIgnoreCase(Temp.dst)){
-			 return true;
-        }
-        
-        return false;
+    	Arco a;
+		if (o == null)
+			return false;
+	
+		if (!(o instanceof Arco))
+			return false;
+    	
+		a = (Arco) o;
+    	
+		if (this.src.equalsIgnoreCase(a.getSrc())&&
+			this.dst.equalsIgnoreCase(a.getDst()))
+			return true;
+		
+		return false;
     }
+    	
 
     /**
      * Retorna el vertice src de la arista.
@@ -84,50 +82,62 @@ public class Arco {
      */
     @Override
     public int hashCode() {
-		int radix = 128; /*Que es equivalente a 2^7*/
-		int hash=0;/*Valor del string src*/
-		int hash1=0;/*valor del string dst*/
-		
-		/*como el string no es mas que un polinomio se evalua mediante el metodo de HORNER*/
-		for (int i = this.src.length()-1; i >= 0; i--){
-            hash = this.src.charAt(i) + (radix*hash);
-      }
-      
-		/*como el string no es mas que un polinomio se evalua mediante el metodo de HORNER*/
-		for (int i = this.dst.length()-1; i >= 0; i--){
-            hash1 = this.dst.charAt(i) + (radix*hash1);
-      }
-		
-     	return Math.abs(hash+hash1);
+    	int hash=13;
+    	int len = this.src.length();
+    	for (int i = 0; i < len; i++) {
+    		hash = 37 * hash + this.src.charAt(i);
+    	}	    	
+    	len = this.dst.length();
+    	for (int i = 0; i < len; i++) {
+    		hash = 37 * hash + this.dst.charAt(i);
+    	}
+    	
+    	return Math.abs(hash);
+    	
+//		int radix = 128; /*Que es equivalente a 2^7*/
+//		int hash=0;/*Valor del string src*/
+//		int hash1=0;/*valor del string dst*/
+//		
+//		/*como el string no es mas que un polinomio se evalua mediante el metodo de HORNER*/
+//		for (int i = this.src.length()-1; i >= 0; i--){
+//            hash = this.src.charAt(i) + (radix*hash);
+//      }
+//      
+//		/*como el string no es mas que un polinomio se evalua mediante el metodo de HORNER*/
+//		for (int i = this.dst.length()-1; i >= 0; i--){
+//            hash1 = this.dst.charAt(i) + (radix*hash1);
+//      }
+//		
+//     	return Math.abs(hash+hash1);
     }
 
-    
-    	public static void main(String args[]) {
-		Arco Aux, Aux1;
-		Object Aux3;
-		
-			Aux = new Arco();
-			Aux1 = new Arco("a","b");
-			Aux3= Aux1.clone();
-			
-			System.out.println();
-			System.out.println(Aux.toString());
-			
-			System.out.println(Aux1.toString());
-			
-			Aux1=new Arco("A","B");
-			System.out.println(Aux1.toString());
-			System.out.println(Aux3.toString());
-			
-			
-			
-			System.out.println(Aux1.hashCode());
-			System.out.println(Aux3.hashCode());
-    
-		}
-    
-    
-    
-    
-    
+//    
+//    	public static void main(String args[]) {
+//		Arco Aux, Aux1;
+//		Object Aux3;
+//		
+//			Aux = new Arco();
+//			Aux1 = new Arco("a","b");
+//			Aux3= Aux1.clone();
+//			
+//			System.out.println();
+//			System.out.println(Aux.toString());
+//			
+//			System.out.println(Aux1.toString());
+//			
+//			Aux1=new Arco("A","B");
+//			System.out.println(Aux1.toString());
+//			System.out.println(Aux3.toString());
+//			
+//			
+//			
+//			System.out.println(Aux1.hashCode());
+//			System.out.println(Aux3.hashCode());
+//    
+//		}
+//    
+//    
+//    
+//    
+//    
 } /*Fin de arco*/

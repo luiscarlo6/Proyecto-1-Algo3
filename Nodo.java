@@ -29,7 +29,7 @@ public class Nodo {
 	 */
 	@Override
 	protected Object clone() {
-		return new Nodo(this.id);
+		return new Nodo(new String(this.id));
 	}
 
 	/**
@@ -59,7 +59,7 @@ public class Nodo {
 	@Override
 	public String toString() {
 
-		return new String(this.id);
+		return new String(new String(this.id));
 	}
 
 	/**
@@ -68,38 +68,48 @@ public class Nodo {
 	@Override
 	public int hashCode() {
 
-		int radix = 128; /*Que es equivalente a 2^7*/
-		int hash=0;/*Valor del string id*/
+		int hash=13;
+    	int len = this.id.length();
+    	for (int i = 0; i < len; i++) {
+    		hash = 37 * hash + this.id.charAt(i);
+		}
+		 
+//		hash = Math.abs(this.id.hashCode());
 
-		/*como el string no es mas que un polinomio se evalua mediante el metodo de HORNER*/
-		for (int i = this.id.length()-1; i >= 0; i--){
-            hash = this.id.charAt(i) + (radix*hash);
-      }
-      return(hash);
-	}
-	
-	
-	public static void main(String args[]) {
-		Nodo Aux, Aux1;
-		Object Aux3;
+		return Math.abs(hash);
 		
-			Aux = new Nodo();
-			Aux1 = new Nodo("Nodo1");
-			Aux3= Aux1.clone();
-			
-			//System.out.println();
-			//System.out.println(Aux.toString());
-			
-			//System.out.println(Aux1.toString());
-			
-			//Aux1=new Nodo("HOLAAA");
-			//System.out.println(Aux1.toString());
-			//System.out.println(Aux3.toString());
-			
-			
-			
-			System.out.println(Aux1.hashCode());
-			//System.out.println(Aux3.hashCode());
+//		int radix = 131; /*Que es equivalente a 2^7*/
+//		int hash=0;/*Valor del string id*/
+//
+//		/*como el string no es mas que un polinomio se evalua mediante el metodo de HORNER*/
+//		for (int i = this.id.length()-1; i >= 0; i--){
+//            hash = this.id.charAt(i) + (radix*hash);
+//		}
+//		return Math.abs(hash);
 	}
 	
+	
+//	public static void main(String args[]) {
+//		Nodo Aux, Aux1;
+//		Object Aux3;
+//		
+//			Aux = new Nodo();
+//			Aux1 = new Nodo("Nodo1");
+//			Aux3= Aux1.clone();
+//			
+//			//System.out.println();
+//			//System.out.println(Aux.toString());
+//			
+//			//System.out.println(Aux1.toString());
+//			
+//			//Aux1=new Nodo("HOLAAA");
+//			//System.out.println(Aux1.toString());
+//			//System.out.println(Aux3.toString());
+//			
+//			
+//			
+//			System.out.println(Aux1.hashCode());
+//			//System.out.println(Aux3.hashCode());
+//	}
+//	
 }
