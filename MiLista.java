@@ -1,19 +1,17 @@
 /**
- * Clase que implementa la interfaz List
+ * Clase que implementa la interfaz Lista
  * Esta es una clase parametrizada con tipo (clase) E; i.e., la
  * lista contiene elementos de tipo E.
  */
 public class MiLista<E> implements Lista<E>{
-
     /*
-     * Modelo de representacion: lista simplemente enlazada 
+     * Modelo de representacion: lista doblemente enlazada 
      * con un centinela.
      * La primera "caja" esta vacia.
-     *
-     * http://es.wikipedia.org/wiki/Lista_(inform�tica)#Nodos_Centinelas
      */
 	private Caja<E> centinela = null;
 	private int tam = 0;
+	
     /*
      * Constructor
      */
@@ -26,7 +24,7 @@ public class MiLista<E> implements Lista<E>{
     }
 
     /**
-     * Agrega un elemento al final de la lista.
+     * Agrega un elemento a la lista.
      */
     public boolean add(E element) {
     	
@@ -109,6 +107,9 @@ public class MiLista<E> implements Lista<E>{
     	return sent;
     }
     
+    /**
+	 *Retorna la primera "caja" de la lista 
+	 **/
     public Caja<E> getCaja(){
     	if (this==null){
     		return null;
@@ -116,6 +117,9 @@ public class MiLista<E> implements Lista<E>{
     	return this.centinela.cajaSig();
     }
     
+    /**
+     *  Retorna el primer de la lista.
+     */
     public E get(){
     	if (this==null){
     		return null;
@@ -170,11 +174,8 @@ public class MiLista<E> implements Lista<E>{
 
     /**
      * Retorna un arreglo que contiene todos los elementos
-     * en esta lista {@code MiLista}.
-     *
-     * @return an array of the elements from this {@code MiLista}.
+     * en esta lista.
      */
-
     public Object[] toArray() {
     	if (this==null){
     		return new Object[0];

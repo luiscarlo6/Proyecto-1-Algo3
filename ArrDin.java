@@ -1,10 +1,9 @@
 /**
- * 
+ * Clase que implementa un arreglo dinamico.
  */
-
-/**
- * @author luiscarlo
- *
+/*
+ * Luiscarlo Rivera
+ * Jose Prado
  */
 public class ArrDin<E>{
 	
@@ -13,6 +12,9 @@ public class ArrDin<E>{
 	private int actual;
 	private int ocupados;
 	
+	/**
+	 * Construcctor por defecto
+	 **/
 	public ArrDin(){
 		this.anterior = 21;
 		this.actual = 34;
@@ -20,11 +22,14 @@ public class ArrDin<E>{
 		this.arr = new Object[actual];
 	}
 	
+	/**
+	 * Agrega un elemento a la posicion 
+	 * "pos" del arreglo 
+	 **/
 	public boolean add(E e,int pos){
 		if (e==null){
 			return false;
-		}
-		
+		}		
 		this.ampliar();
 		if (this.arr[pos]==null){
 			this.ocupados++;
@@ -33,10 +38,18 @@ public class ArrDin<E>{
 		return true;
 	}
 	
+	/**
+	 * Retorna el objeto almacenado en la posicion 
+	 * "pos" del arreglo
+	 **/
 	public Object get(int pos){
 		return this.arr[pos];
 	}
 	
+	/**
+	 * Amplia el tamaño del arreglo en funcion de
+	 * la sucecion de fibonacci
+	 **/
 	public void ampliar(){
 		if (!(this.ocupados>=this.actual)){
 			return;			
@@ -55,11 +68,18 @@ public class ArrDin<E>{
 		this.arr = nuevoArr;
 	}
 	
+	/**
+	 * Elimina todos los elementos del arreglo
+	 * (el arreglo queda como recien creado)
+	 **/
 	public void clear(){
 		this.ocupados = 0;
 		this.arr = new Object[actual];
 	}
 	
+	/**
+	 * Verifica si el arreglo contiene el elemento o
+	 **/
 	public boolean contains(E o){
 		int i = 0;
 		boolean e = false;
@@ -77,11 +97,16 @@ public class ArrDin<E>{
 		}
 	}
 	
-	
+	/**
+	 * retorna el arreglo
+	 **/
 	public Object[] getArr(){
 		return this.arr;
 	}
 	
+	/**
+	 * retorna el tamaño del arreglo
+	 **/
 	public int tam(){
 		return this.arr.length;
 	}

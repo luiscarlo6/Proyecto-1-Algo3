@@ -7,12 +7,12 @@ public class Main {
 	public static void main(String[] args) {
 		long tiempoInicio = System.currentTimeMillis();
 		Nodo A;
-		int max = 100000;
+		int max = 1000000;
 		int colisiones = 0;
 		ArrDin arr = new ArrDin();
 		boolean arreglo[] = new boolean[max];
 		
-		for (int i = 0; i!=max ; i++){
+		for (int i = 0; i!=max-250000 ; i++){
 			A = new Nodo("Nodo_"+i);
 //			System.out.println("pos "+i+" "+arr.add(A, i)+"tam arr "+arr.tam());		
 //			arr.add(A, i);

@@ -48,7 +48,9 @@ public interface Lista<E> {
      */
     public Object[] toArray();
     
-    
+    /**
+	 *Retorna la primera "caja" de la lista 
+	 **/
     public Caja<E> getCaja();
 
 }
