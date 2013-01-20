@@ -27,7 +27,8 @@ public class MiLista<E> implements Lista<E>{
     /**
      * Agrega un elemento a la lista.
      */
-    public boolean add(E element) {
+    @Override
+	public boolean add(E element) {
     	
     	
     	if (element==null || this.contains(element)) {
@@ -60,7 +61,8 @@ public class MiLista<E> implements Lista<E>{
     /**
      * Determina si el elemento dado esta en la lista.
      */
-    public boolean contains(Object element){
+    @Override
+	public boolean contains(Object element){
     	if (element==null){
     		return false;
     	}
@@ -90,7 +92,8 @@ public class MiLista<E> implements Lista<E>{
     /**
      * Determina si la lista dada es igual a la lista.
      */
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @Override
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public boolean equals(Lista<E> lista){
     	boolean sent = false;
     	
@@ -124,7 +127,8 @@ public class MiLista<E> implements Lista<E>{
     /**
      *  Retorna el primer de la lista.
      */
-    public E get(){
+    @Override
+	public E get(){
     	if (this==null){
     		return null;
     	}
@@ -134,7 +138,8 @@ public class MiLista<E> implements Lista<E>{
     /**
      * Determina si la lista es vacia.
      */
-    public boolean isEmpty(){
+    @Override
+	public boolean isEmpty(){
     	 return this==null || this.getSize()==0;
     }
 
@@ -142,7 +147,8 @@ public class MiLista<E> implements Lista<E>{
      * Elimina el elemento dado de la lista. Si la lista cambia,
      * retorna true, sino retorna false.
      */
-    public boolean remove(E element){
+    @Override
+	public boolean remove(E element){
 
     	if (element==null || this.isEmpty()) {
             return false;
@@ -169,7 +175,8 @@ public class MiLista<E> implements Lista<E>{
     /**
      * Retorna el numero de elementos en la lista
      */
-    public int getSize(){
+    @Override
+	public int getSize(){
     	if (this==null){
     		return 0;
     	}
@@ -180,7 +187,8 @@ public class MiLista<E> implements Lista<E>{
      * Retorna un arreglo que contiene todos los elementos
      * en esta lista.
      */
-    public Object[] toArray() {
+    @Override
+	public Object[] toArray() {
     	if (this==null){
     		return new Object[0];
     	}
@@ -282,11 +290,13 @@ public class MiLista<E> implements Lista<E>{
     		return this.anterior.elemento;
     	}
     	
-    	public String toString() {
+    	@Override
+		public String toString() {
     		return this.elemento.toString();
     	}
     	 
-    	@SuppressWarnings("unchecked")
+    	@Override
+		@SuppressWarnings("unchecked")
 		public boolean equals(Object c) {
     		if (c==null){
     			return false;
@@ -334,7 +344,8 @@ public class MiLista<E> implements Lista<E>{
 	   		this.ListaAux.remove(Temp);
 	   	}
            
-	   	@SuppressWarnings("unchecked")
+	   	@Override
+		@SuppressWarnings("unchecked")
 		public E prev(){
 	   		E Temp;
                
@@ -344,7 +355,8 @@ public class MiLista<E> implements Lista<E>{
    	   		return Temp;
 	   	}
            
-	   	public boolean hasPrev(){
+	   	@Override
+		public boolean hasPrev(){
 	   		return (this.Actual.anterior()!=null);
 	   	}
      

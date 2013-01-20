@@ -30,14 +30,14 @@ public class Arco {
     @Override
     protected Object clone() {
     	// se copian (clonan) todos los objetos internos, 
-    	// no solo asignar las referencia.
     	return new Arco(new String(this.src), new String(this.dst));
     }
 
     /**
      * Indica si la arista de entrada es igual a this.
      */
-    public boolean equals(Object o) {
+    @Override
+	public boolean equals(Object o) {
     	Arco a;
 		if (o == null)
 			return false;
@@ -110,34 +110,4 @@ public class Arco {
 //		
 //     	return Math.abs(hash+hash1);
     }
-
-//    
-//    	public static void main(String args[]) {
-//		Arco Aux, Aux1;
-//		Object Aux3;
-//		
-//			Aux = new Arco();
-//			Aux1 = new Arco("a","b");
-//			Aux3= Aux1.clone();
-//			
-//			System.out.println();
-//			System.out.println(Aux.toString());
-//			
-//			System.out.println(Aux1.toString());
-//			
-//			Aux1=new Arco("A","B");
-//			System.out.println(Aux1.toString());
-//			System.out.println(Aux3.toString());
-//			
-//			
-//			
-//			System.out.println(Aux1.hashCode());
-//			System.out.println(Aux3.hashCode());
-//    
-//		}
-//    
-//    
-//    
-//    
-//    
 } /*Fin de arco*/

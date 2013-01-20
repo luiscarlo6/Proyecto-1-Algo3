@@ -87,29 +87,4 @@ public class Nodo {
 //		}
 //		return Math.abs(hash);
 	}
-	
-	
-//	public static void main(String args[]) {
-//		Nodo Aux, Aux1;
-//		Object Aux3;
-//		
-//			Aux = new Nodo();
-//			Aux1 = new Nodo("Nodo1");
-//			Aux3= Aux1.clone();
-//			
-//			//System.out.println();
-//			//System.out.println(Aux.toString());
-//			
-//			//System.out.println(Aux1.toString());
-//			
-//			//Aux1=new Nodo("HOLAAA");
-//			//System.out.println(Aux1.toString());
-//			//System.out.println(Aux3.toString());
-//			
-//			
-//			
-//			System.out.println(Aux1.hashCode());
-//			//System.out.println(Aux3.hashCode());
-//	}
-//	
-}
+} /*Fin de nodo*/
