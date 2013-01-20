@@ -9,8 +9,9 @@ public class MiLista<E> implements Lista<E>{
      * con un centinela.
      * La primera "caja" esta vacia.
      */
-	private Caja<E> centinela = null;
 	private int tam = 0;
+	private Caja<E> centinela = null;
+	
 	
     /*
      * Constructor
@@ -75,11 +76,22 @@ public class MiLista<E> implements Lista<E>{
     	}
     	return false;
     }
+    
+    /**
+   	 *Retorna la primera "caja" de la lista 
+   	 **/
+       private Caja<E> getCaja(){
+       	if (this==null){
+       		return null;
+       	}
+       	return this.centinela.cajaSig();
+       }
 
     /**
      * Determina si la lista dada es igual a la lista.
      */
-    public boolean equals(Lista<E> lista){
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	public boolean equals(Lista<E> lista){
     	boolean sent = false;
     	
     	if (this==null || lista==null){
@@ -93,7 +105,7 @@ public class MiLista<E> implements Lista<E>{
     	if (this.tam==lista.getSize()){
     		
     		Caja<E> aux1 = this.centinela.cajaSig();
-    		Caja<E> aux2 = lista.getCaja();
+    		Caja<E> aux2 =((MiLista) lista).getCaja();
 //    		sent = aux1.verContenido()==aux2.verContenido();
     		int i = 0;
     		sent = true;
@@ -107,15 +119,7 @@ public class MiLista<E> implements Lista<E>{
     	return sent;
     }
     
-    /**
-	 *Retorna la primera "caja" de la lista 
-	 **/
-    public Caja<E> getCaja(){
-    	if (this==null){
-    		return null;
-    	}
-    	return this.centinela.cajaSig();
-    }
+   
     
     /**
      *  Retorna el primer de la lista.
@@ -194,6 +198,158 @@ public class MiLista<E> implements Lista<E>{
     	}
     	return Alista;
     }
+
+    /**
+     * Devuelve un iterador sobre la lista.
+     */
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	public ListIterator<E> iterator() {
+    	return new LisIter(this);
+    }
+    
+         
+    
+    
+    @SuppressWarnings("hiding")
+	private final class Caja<E> {
+    	
+    	private Caja<E> siguiente = null;
+    	private Caja<E> anterior = null;
+    	private E elemento = null;
+    	
+    	public Caja(E e){
+    		this.elemento = e;
+    		this.siguiente = null;
+    		this.anterior=null;		
+    	}
+    	
+    	public boolean cambiarSiguiente(E e){
+    		Caja<E> sig = new Caja<E>(e);
+    		if (this!=null){
+    			this.siguiente = sig;
+    			sig.anterior = this;
+    			return true;
+    		}
+    		return false;
+    	}
+    	
+    	public Caja<E> cajaSig(){
+    		return this.siguiente;
+    	}
+    	
+    	public Caja<E> cajaAnt(){
+    		return this.anterior;
+    	}
+    	
+    	public boolean cambiarSiguiente(Caja<E> e){
+    		if (this!=null){
+    			this.siguiente = e;
+    			e.anterior = this;
+    			return true;
+    		}
+    		return false;
+    	}
+    	
+    	public boolean cambiarAnterior(E e){
+    		Caja<E> ant = new Caja<E>(e);
+    		if (this!=null){
+    			this.anterior = ant;
+    			ant.siguiente = this;
+    			return true;
+    		}
+    		return false;
+    	}
+    	
+    	public boolean cambiarAnterior(Caja<E> e){
+    		if (this!=null){
+    			this.anterior = e;
+    			e.siguiente = this;
+    			return true;
+    		}
+    		return false;
+    	}
+    	
+    	public E elemento(){
+    		return this.elemento;
+    	}
+    	
+    	public E siguiente(){
+    		return this.siguiente.elemento;
+    	}
+    	
+    	public E anterior(){
+    		return this.anterior.elemento;
+    	}
+    	
+    	public String toString() {
+    		return this.elemento.toString();
+    	}
+    	 
+    	@SuppressWarnings("unchecked")
+		public boolean equals(Object c) {
+    		if (c==null){
+    			return false;
+    		}
+    		Caja<E> d = ((Caja<E>) c);
+            return (c instanceof Caja) && this.elemento.equals(d.elemento);
+    	}
+    }
+    
+    @SuppressWarnings("hiding")
+	private final class LisIter<E> implements ListIterator<E> {
+		private MiLista<E> ListaAux=null;
+	   	private Caja<E> Actual=null;
+	   	private int cont;
+   	 
+	   	@SuppressWarnings("unchecked")
+		private LisIter(MiLista<E> Lis){
+	   		this.ListaAux = Lis;
+	   		this.Actual = ((Caja<E>) Lis.getCaja());
+	   		this.cont=0;
+	   	}
+
+
+            
+	   	@Override
+	   	public boolean hasNext() {
+	   		return(this.Actual.siguiente()!=null);
+	   	}
+
+	   	@SuppressWarnings("unchecked")
+		@Override
+	   	public E next() {
+	   		E Temp;
+               
+	   		Temp=this.Actual.elemento();
+	   		this.Actual=((Caja<E>) this.Actual.siguiente());
+	   		this.cont++;
+	   		return Temp;
+	   	}
+
+	   	@Override
+        public void unlink() {
+	   		E Temp;
+	   		Temp= this.Actual.anterior();
+	   		this.ListaAux.remove(Temp);
+	   	}
+           
+	   	@SuppressWarnings("unchecked")
+		public E prev(){
+	   		E Temp;
+               
+   	   		Temp=this.Actual.elemento();
+   	   		this.Actual=((Caja<E>) this.Actual.anterior());
+   	   		this.cont--;
+   	   		return Temp;
+	   	}
+           
+	   	public boolean hasPrev(){
+	   		return (this.Actual.anterior()!=null);
+	   	}
+     
+     }//Fin LisIter
+    
 }
 
 // End List.
