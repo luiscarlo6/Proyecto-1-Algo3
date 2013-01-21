@@ -32,6 +32,20 @@ public class Nodo {
 		return new Nodo(new String(this.id));
 	}
 
+	
+
+	/**
+     * Retorna la representacion en String del nodo.
+     */
+	@Override
+	public String toString() {
+
+		return new String(new String(this.id));
+	}
+
+
+
+	
 	/**
      * Indica si el nodo de entrada es igual a this.
      */
@@ -52,16 +66,7 @@ public class Nodo {
 
 		return false;
 	}
-
-	/**
-     * Retorna la representacion en String del nodo.
-     */
-	@Override
-	public String toString() {
-
-		return new String(new String(this.id));
-	}
-
+	
 	/**
 	 * Retorna el codigo hash para un nodo.
 	 */

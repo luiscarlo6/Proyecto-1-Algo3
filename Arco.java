@@ -59,7 +59,7 @@ public class Arco {
      * Retorna el vertice src de la arista.
      */
     public String getSrc() {
-        return(new String(this.src));
+    	return(new String(this.src));
     }
 
     /**

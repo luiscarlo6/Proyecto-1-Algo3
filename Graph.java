@@ -91,5 +91,6 @@ public interface Graph {
 	/**
 	 * Devuelve una representacion en String del grafo.
 	 */
+	@Override
 	public String toString();
 }

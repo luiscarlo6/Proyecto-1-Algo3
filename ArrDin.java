@@ -5,12 +5,11 @@
  * Luiscarlo Rivera
  * Jose Prado
  */
-public class ArrDin<E>{
+public class ArrDin<E> implements DynamicArray<E>{
 	
 	private Object arr[] = null;
-	private int anterior;
-	private int actual;
-	private int ocupados;
+	private int anterior,actual,ocupados;
+
 	
 	/**
 	 * Construcctor por defecto
@@ -22,10 +21,23 @@ public class ArrDin<E>{
 		this.arr = new Object[actual];
 	}
 	
+	@Override
+	public boolean add(E e){
+		if (e==null){
+			return false;
+		}
+		
+		this.ampliar();
+		this.arr[this.ocupados] = e;
+		this.ocupados++;
+		return true;
+	}
+	
 	/**
 	 * Agrega un elemento a la posicion 
 	 * "pos" del arreglo 
 	 **/
+	@Override
 	public boolean add(E e,int pos){
 		if (e==null){
 			return false;
@@ -42,6 +54,7 @@ public class ArrDin<E>{
 	 * Retorna el objeto almacenado en la posicion 
 	 * "pos" del arreglo
 	 **/
+	@Override
 	public Object get(int pos){
 		return this.arr[pos];
 	}
@@ -50,6 +63,7 @@ public class ArrDin<E>{
 	 * Amplia el tamaño del arreglo en funcion de
 	 * la sucecion de fibonacci
 	 **/
+	@Override
 	public void ampliar(){
 		if (!(this.ocupados>=this.actual)){
 			return;			
@@ -72,6 +86,7 @@ public class ArrDin<E>{
 	 * Elimina todos los elementos del arreglo
 	 * (el arreglo queda como recien creado)
 	 **/
+	@Override
 	public void clear(){
 		this.ocupados = 0;
 		this.arr = new Object[actual];
@@ -80,6 +95,7 @@ public class ArrDin<E>{
 	/**
 	 * Verifica si el arreglo contiene el elemento o
 	 **/
+	@Override
 	public boolean contains(E o){
 		int i = 0;
 		boolean e = false;
@@ -100,6 +116,7 @@ public class ArrDin<E>{
 	/**
 	 * retorna el arreglo
 	 **/
+	@Override
 	public Object[] getArr(){
 		return this.arr;
 	}
@@ -107,7 +124,20 @@ public class ArrDin<E>{
 	/**
 	 * retorna el tamaño del arreglo
 	 **/
+	@Override
 	public int tam(){
 		return this.arr.length;
+	}
+
+	@Override
+	public boolean remove(int pos) {
+		/*Implementar*/
+		return false;
+	}
+
+	@Override
+	public boolean remove(E e) {
+		/*Implementar*/
+		return false;
 	}
 } /*Fin de arrDin*/

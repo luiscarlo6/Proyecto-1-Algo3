@@ -31,7 +31,7 @@ public class MiLista<E> implements Lista<E>{
 	public boolean add(E element) {
     	
     	
-    	if (element==null || this.contains(element)) {
+    	if (element==null) {
     		return false;
     	}
     	if (this.tam==0) {

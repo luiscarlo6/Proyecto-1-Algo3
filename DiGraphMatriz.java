@@ -16,6 +16,7 @@ public class DiGraphMatriz implements Graph{
 	 * Agrega el nodo n. Si el nodo ya existe en el grafo, retorna false.
 	 * Si se agrega correctamente el nodo, retorna true.
 	 */
+	@Override
 	public boolean add(Nodo n) {
 
 		/* implementar */
@@ -27,6 +28,7 @@ public class DiGraphMatriz implements Graph{
 	 * o si ya existe un lado entre dichos nodos, retorna false. 
 	 * Si se agrega correctamente el nodo, retorna true.
 	 */
+	@Override
 	public boolean add(Arco a) {
 
 		/* implementar */
@@ -36,6 +38,7 @@ public class DiGraphMatriz implements Graph{
 	/**
 	 * Retorna un grafo nuevo que es una copia del grafo actual.
 	 */
+	@Override
 	public Object clone() {
 
 		/* implementar */
@@ -46,6 +49,7 @@ public class DiGraphMatriz implements Graph{
 	 * Retorna true si el grafo contiene un nodo igual a n,
 	 * si no retorna false.
 	 */
+	@Override
 	public boolean contains(Nodo n) {
 
 		/* implementar */
@@ -56,6 +60,7 @@ public class DiGraphMatriz implements Graph{
 	 * Retorna true si el grafo contiene un arco igual a a,
 	 * si no retorna false.
 	 */
+	@Override
 	public boolean contains(Arco a) {
 
 		/* implementar */
@@ -67,6 +72,7 @@ public class DiGraphMatriz implements Graph{
 	 * Si el grafo se modifica (si el nodo existia en este), retorna true.
 	 * Si el grafo se mantiene igual, retorna false.
 	 */
+	@Override
 	public boolean remove(Nodo n) {
 
 		/* implementar */
@@ -78,6 +84,7 @@ public class DiGraphMatriz implements Graph{
 	 * Si el grafo se modifica (si el arco existia en este), retorna true.
 	 * Si el grafo se mantiene igual, retorna false.
 	 */
+	@Override
 	public boolean remove(Arco a) {
 
 		/* implementar */
@@ -87,6 +94,7 @@ public class DiGraphMatriz implements Graph{
 	/**
 	 * Devuelve una lista con todos los nodos del grafo.
 	 */
+	@Override
 	public Lista<Nodo> getNodos() {
 
 		/* implementar */
@@ -96,6 +104,7 @@ public class DiGraphMatriz implements Graph{
 	/**
 	 * Devuelve una lista con todos los arcos del grafo.
 	 */
+	@Override
 	public Lista<Arco> getArcos() {
 
 		/* implementar */
@@ -105,6 +114,7 @@ public class DiGraphMatriz implements Graph{
 	/**
 	 * Devuelve el numero de nodos que hay en el grafo.
 	 */
+	@Override
 	public int getNumNodos() {
 
 		return this.numNodos;
@@ -113,6 +123,7 @@ public class DiGraphMatriz implements Graph{
 	/**
 	 * Devuelve el numero de arcos que hay en el grafo.
 	 */
+	@Override
 	public int getNumArcos() {
 
 		return this.numArcos;
@@ -121,6 +132,7 @@ public class DiGraphMatriz implements Graph{
 	/**
 	 * Devuelve una lista con los predecesores del nodo n.
 	 */
+	@Override
 	public Lista<Nodo> getPred(Nodo n) {
 
 		/* implementar */
@@ -130,6 +142,7 @@ public class DiGraphMatriz implements Graph{
 	/**
 	 * Devuelve una lista con los sucesores del nodo n.
 	 */
+	@Override
 	public Lista<Nodo> getSuc(Nodo n) {
 
 		/* implementar */
@@ -139,6 +152,7 @@ public class DiGraphMatriz implements Graph{
 	/**
 	 * Devuelve una lista con los arcos que tienen al nodo n como destino.
 	 */
+	@Override
 	public Lista<Arco> getIn(Nodo n) {
 
 		/* implementar */
@@ -148,6 +162,7 @@ public class DiGraphMatriz implements Graph{
 	/**
 	 * Devuelve una lista con los arcos que tienen al nodo n como fuente.
 	 */
+	@Override
 	public Lista<Arco> getOut(Nodo n) {
 
 		/* implementar */
@@ -157,6 +172,7 @@ public class DiGraphMatriz implements Graph{
 	/**
 	 * Devuelve una representacion en String del grafo.
 	 */
+	@Override
 	public String toString() {
 
 		/* implementar */
