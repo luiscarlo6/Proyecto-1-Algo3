@@ -68,7 +68,6 @@ public class MiLista<E> implements Lista<E>{
     	}
     	Caja<E> aux = this.centinela.cajaSig();
     	int i = 0;
-    	
     	while (i!=this.tam){
     		if (aux.elemento().equals(element)){
     			return true;

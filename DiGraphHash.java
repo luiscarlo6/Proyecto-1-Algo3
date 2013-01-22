@@ -32,7 +32,7 @@ public class DiGraphHash implements Graph{
 			System.out.println("GRAFO LLENO "+this.numNodos+" Nodos"+ this.nodos.tam()*0.7);
 			return false;
 		}
-		
+
 		int pos = n.hashCode()%this.nodos.tam();
 		boolean esta = false;
 		if (this.nodos.get(pos)!=null){
@@ -75,76 +75,37 @@ public class DiGraphHash implements Graph{
 		
 		Nodo src = new Nodo(a.getSrc());
     	Nodo dst = new Nodo(a.getDst());
-    	boolean estaSrc = false;
-    	boolean estaDst = false;
+    	int posSrc = this.pos(src);
+    	int posDst = this.pos(dst);
+    	boolean estaSrc = posSrc!=-1;
+    	boolean estaDst = posDst!=-1;
     	
-    	int posSrc = src.hashCode()%this.nodos.tam();
-    	int posDst = dst.hashCode()%this.nodos.tam();
-    	
-    	if (this.nodos.get(posSrc)!=null &&
-    		this.nodos.get(posDst)!=null){
-    		
-    		if (!src.equals((this.nodos.get(posSrc)))){
-    			int i = posSrc+1;
-    			int j = 0;
-    			estaSrc = false;
-    			while (this.nodos.get(i%this.nodos.tam())!=null&&
-    					!estaSrc & j!=this.nodos.tam()){
-    				if (src.equals((this.nodos.get(i%this.nodos.tam())))){
-    					posSrc = i%this.nodos.tam();
-    					estaSrc = true;
-    				}
-    				i++;
-    				j++;
-    			}
-    		}
-    		else
-    			estaSrc = true;
-    		
-    		if (!dst.equals((this.nodos.get(posDst)))){
-    			int i = posDst+1;
-    			int j = 0;
-    			estaDst = false;
-    			while (this.nodos.get(i%this.nodos.tam())!=null&&
-    					!estaDst & j!=this.nodos.tam()){
-    				if (dst.equals((this.nodos.get(i%this.nodos.tam())))){
-    					posDst = i%this.nodos.tam();
-    					estaDst = true;
-    				}
-    				i++;
-    				j++;
-    			}
-    		}
-    		else
-    			estaDst = true;
-    		
-    		if (estaSrc && estaDst){
-    			MiLista<Arco> in =(MiLista<Arco>) this.arcosIn.get(posDst);
-    			MiLista<Arco> out =(MiLista<Arco>) this.arcosOut.get(posSrc);
-    			if (posDst==posSrc){
-    				boolean sal = in.contains(a); 
-    				if (!sal){
-    					in.add(a);
-    					this.numArcos++;
-        				return true;
-    				}
-    			}
-				else{
-					
-					boolean as = in.contains(a) &&
-								 out.contains(a);
-					if (!as){
-						out.add(a);
-						in.add(a);
-						this.numArcos++;
-						return true;
-					}
-					return false;
+    	if (estaSrc && estaDst){
+    		MiLista<Arco> in =(MiLista<Arco>) this.arcosOut.get(posSrc);
+			MiLista<Arco> out =(MiLista<Arco>) this.arcosIn.get(posDst);
+			if (posDst==posSrc){
+				boolean sal = in.contains(a); 
+				if (!sal){
+					in.add(a);
+					this.numArcos++;
+    				return true;
 				}
 			}
+			else{				
+				boolean as = in.contains(a) && out.contains(a);
+				if (!as){
+					out.add(a);
+					in.add(a);
+					this.numArcos++;
+					return true;
+				}
+				return false;
+			}
 		}
-    	return false;
+		return false;
 	}
+
+
 
 	/**
 	 * Retorna un grafo nuevo que es una copia del grafo actual.
@@ -182,8 +143,44 @@ public class DiGraphHash implements Graph{
 	 */
 	public boolean contains(Arco a) {
 
-		/* implementar */
-		return false;
+		boolean esta = false;
+    	
+    	Nodo src = new Nodo(a.getSrc());
+    	Nodo dst = new Nodo(a.getDst());
+    	boolean estaSrc = false;
+    	boolean estaDst = false;
+		
+		int posSrc = src.hashCode()%this.nodos.tam();
+    	int posDst = dst.hashCode()%this.nodos.tam();
+    	if (this.nodos.get(posSrc)==null || this.nodos.get(posDst)==null){
+    		return false;
+    	}
+    	else{
+    		if(src.equals(this.nodos.get(posSrc))){
+    			esta =((Lista<Arco>) this.arcosOut.get(posSrc)).contains(a);
+	  			
+    		}
+    		else{
+
+	    		int i = posSrc+1;
+	    		int j = 0;
+	    		estaSrc = false;
+	  		  	while (this.nodos.get(i%this.nodos.tam())!=null&&
+	  		  			!estaSrc&&j!=this.nodos.tam()){
+	  		  	
+	  		  		if(src.equals(this.nodos.get(i%this.nodos.tam()))){
+	  		  			posSrc = i%this.nodos.tam();
+	  		  			estaSrc = true;
+	  		  		}
+	  		  		i++;
+	  		  		j++;
+	  		  	}
+	  		  	if (estaSrc){
+	  		  		esta = ((Lista<Arco>)this.arcosOut.get(posSrc)).contains(a);
+	  		  	}
+    		}
+    		return esta;
+    	}
 	}
 
 	/**
@@ -285,5 +282,51 @@ public class DiGraphHash implements Graph{
 
 		/* implementar */
 		return "";
+	}
+	
+	private int pos(Nodo n){
+		if (n==null){
+			return -1;
+		}
+
+		boolean esta = false;
+		int pos = n.hashCode()%this.nodos.tam();
+		
+		if (n.equals(this.nodos.get(pos))){
+			return pos;
+		}
+		pos++;
+		while (this.nodos.get(pos%this.nodos.tam())!=null && !esta){
+			esta = n.equals(this.nodos.get(pos%this.nodos.tam()));
+			pos++;
+		}
+
+//    	boolean esta = false;
+//    	
+//    	int pos = n.hashCode()%this.nodos.tam();
+//    	
+//    	if (this.nodos.get(pos)!=null){
+//    		
+//    		if (!n.equals((this.nodos.get(pos)))){
+//    			int i = pos+1;
+//    			int j = 0;
+//    			esta = false;
+//    			while (this.nodos.get(i%this.nodos.tam())!=null&&
+//    					!esta & j!=this.nodos.tam()){
+//    				if (n.equals((this.nodos.get(i%this.nodos.tam())))){
+//    					pos = i%this.nodos.tam();
+//    					esta = true;
+//    				}
+//    				i++;
+//    				j++;
+//    			}
+//    		}
+//    		else
+//    			esta = true;
+//    	}
+    	if (esta)
+    		return pos-1;
+    	
+    	return -1;
 	}
 }
