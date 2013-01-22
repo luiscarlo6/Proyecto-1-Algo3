@@ -8,17 +8,20 @@ public class Main {
 		long tiempoInicio = System.currentTimeMillis();
 		Nodo A;
 		Arco B;
-		int max = 50;
+		int max = 100;
 		Graph grafo = new DiGraphHash();
 		
 		for (int i = 0;i!=max;i++){
-			A = new Nodo("Nodo_"+1);
+			A = new Nodo("Nodo_"+i);
+//			System.out.println(grafo.add(A));
 			grafo.add(A);
 		}
 		
 		for (int i = 0;i!=max;i++){
-			B = new Arco("Nodo_"+1);
-			grafo.add(A);
+			A = new Nodo("Nodo_"+i);
+			B = new Arco("Nodo_"+i,"Nodo_"+(max-i));
+			System.out.println(grafo.contains(A));
+//			grafo.add(B);
 		}
 		long totalTiempo = System.currentTimeMillis() - tiempoInicio;
 		System.out.println("El tiempo de demora es :" + totalTiempo + " miliseg");

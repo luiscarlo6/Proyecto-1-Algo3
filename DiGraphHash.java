@@ -34,9 +34,8 @@ public class DiGraphHash implements Graph{
 		}
 		
 		int pos = n.hashCode()%this.nodos.tam();
-
+		boolean esta = false;
 		if (this.nodos.get(pos)!=null){
-			boolean esta = false;
 			int i = pos;
 			int j = 0;
 			while (this.nodos.get(i%this.nodos.tam())!=null &&
@@ -51,12 +50,14 @@ public class DiGraphHash implements Graph{
 
 			}
 		}
-		
-		this.nodos.add(n, pos);
-		this.arcosIn.add(new MiLista<Arco>(),pos);
-		this.arcosOut.add(new MiLista<Arco>(),pos);
-		this.numNodos++;
-		return true;
+		if (!esta){
+			this.nodos.add(n, pos);
+			this.arcosIn.add(new MiLista<Arco>(),pos);
+			this.arcosOut.add(new MiLista<Arco>(),pos);
+			this.numNodos++;
+			return true;
+		}
+		return false;
 
 	}
 
@@ -65,6 +66,7 @@ public class DiGraphHash implements Graph{
 	 * o si ya existe un lado entre dichos nodos, retorna false. 
 	 * Si se agrega correctamente el nodo, retorna true.
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean add(Arco a) {
 		if (a==null){
@@ -117,19 +119,30 @@ public class DiGraphHash implements Graph{
     			estaDst = true;
     		
     		if (estaSrc && estaDst){
-    			MiLista<Arco> In =(MiLista<Arco>) this.arcosIn.get(posDst);
-    			MiLista<Arco> Out =(MiLista<Arco>) this.arcosOut.get(posSrc);
-    			
-    			if (!In.contains(a)){
-    				In.add(a);
-    				this.numArcos++;
+    			MiLista<Arco> in =(MiLista<Arco>) this.arcosIn.get(posDst);
+    			MiLista<Arco> out =(MiLista<Arco>) this.arcosOut.get(posSrc);
+    			if (posDst==posSrc){
+    				boolean sal = in.contains(a); 
+    				if (!sal){
+    					in.add(a);
+    					this.numArcos++;
+        				return true;
+    				}
     			}
-    			if (!Out.contains(a)){
-    				Out.add(a);
-    			}
-    			return true;
-    		}
-    	}
+				else{
+					
+					boolean as = in.contains(a) &&
+								 out.contains(a);
+					if (!as){
+						out.add(a);
+						in.add(a);
+						this.numArcos++;
+						return true;
+					}
+					return false;
+				}
+			}
+		}
     	return false;
 	}
 
@@ -137,7 +150,6 @@ public class DiGraphHash implements Graph{
 	 * Retorna un grafo nuevo que es una copia del grafo actual.
 	 */
 	public Object clone() {
-
 		/* implementar */
 		return null;
 	}
@@ -147,9 +159,21 @@ public class DiGraphHash implements Graph{
 	 * si no retorna false.
 	 */
 	public boolean contains(Nodo n) {
-
-		/* implementar */
-		return false;
+		if (this.numNodos==0){
+			return false;
+		}
+		boolean esta = false;
+		int i = n.hashCode()%this.nodos.tam();
+		
+		if (n.equals(this.nodos.get(i))){
+			return true;
+		}
+		i++;
+		while (this.nodos.get(i%this.nodos.tam())!=null && !esta){
+			esta = n.equals(this.nodos.get(i%this.nodos.tam()));
+			i++;
+		}
+		return esta;
 	}
 
 	/**
