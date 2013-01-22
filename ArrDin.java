@@ -5,7 +5,7 @@
  * Luiscarlo Rivera
  * Jose Prado
  */
-public class ArrDin<E> implements DynamicArray<E>{
+public class ArrDin<E>{
 	
 	private Object arr[] = null;
 	private int anterior,actual,ocupados;
@@ -21,7 +21,9 @@ public class ArrDin<E> implements DynamicArray<E>{
 		this.arr = new Object[actual];
 	}
 	
-	@Override
+	/**
+	 * Agrega un elemento en la posicion siguiente vacia
+	 **/
 	public boolean add(E e){
 		if (e==null){
 			return false;
@@ -37,7 +39,6 @@ public class ArrDin<E> implements DynamicArray<E>{
 	 * Agrega un elemento a la posicion 
 	 * "pos" del arreglo 
 	 **/
-	@Override
 	public boolean add(E e,int pos){
 		if (e==null){
 			return false;
@@ -54,39 +55,50 @@ public class ArrDin<E> implements DynamicArray<E>{
 	 * Retorna el objeto almacenado en la posicion 
 	 * "pos" del arreglo
 	 **/
-	@Override
 	public Object get(int pos){
-		return this.arr[pos];
+		try{
+			return this.arr[pos];
+		}
+		catch(java.lang.ArrayIndexOutOfBoundsException A){
+			return null;
+		}
 	}
 	
 	/**
 	 * Amplia el tamaño del arreglo en funcion de
 	 * la sucecion de fibonacci
 	 **/
-	@Override
 	public void ampliar(){
 		if (!(this.ocupados>=this.actual)){
 			return;			
 		}
+		Object viejoArr[] = this.arr;
+		this.resize();
 		
+		System.arraycopy(viejoArr, 0, this.arr, 0, viejoArr.length);
+		
+//		for (int i= 0; i!=this.arr.length;i++){
+//			this.Arr[i] = viejoArr[i];
+//		}
+	}
+	
+	/**
+	 * redimensiona el arreglo en funcion de la
+	 * sucesion de fibonacci, el arreglo queda vacio
+	 **/
+	public void resize(){
 		int nuevoTam = this.actual+this.anterior;
 		this.anterior = this.actual;
 		this.actual = nuevoTam;
 		Object nuevoArr[] = new Object[nuevoTam];
-		
-		System.arraycopy(this.arr, 0, nuevoArr, 0, this.arr.length);
-		
-//		for (int i= 0; i!=this.arr.length;i++){
-//			nuevoArr[i] = this.arr[i];
-//		}
 		this.arr = nuevoArr;
+
 	}
 	
 	/**
 	 * Elimina todos los elementos del arreglo
 	 * (el arreglo queda como recien creado)
 	 **/
-	@Override
 	public void clear(){
 		this.ocupados = 0;
 		this.arr = new Object[actual];
@@ -95,7 +107,6 @@ public class ArrDin<E> implements DynamicArray<E>{
 	/**
 	 * Verifica si el arreglo contiene el elemento o
 	 **/
-	@Override
 	public boolean contains(E o){
 		int i = 0;
 		boolean e = false;
@@ -116,7 +127,6 @@ public class ArrDin<E> implements DynamicArray<E>{
 	/**
 	 * retorna el arreglo
 	 **/
-	@Override
 	public Object[] getArr(){
 		return this.arr;
 	}
@@ -124,20 +134,82 @@ public class ArrDin<E> implements DynamicArray<E>{
 	/**
 	 * retorna el tamaño del arreglo
 	 **/
-	@Override
 	public int tam(){
 		return this.arr.length;
 	}
-
-	@Override
-	public boolean remove(int pos) {
-		/*Implementar*/
-		return false;
+	
+	/**
+	 * retorna el numero de elementos guardados en el arreglo
+	 **/
+	public int numElem(){
+		return this.ocupados;
 	}
+	
+	/**
+	 * remueve el elemento que este en la
+	 * posicion "pos" del arreglo
+	 * devuelve true si el arreglo cambia
+	 **/
+	public boolean remove(int pos) {
+		try{
+			if (this.arr[pos]==null){
+				return false;
+			}
+		}
+		catch(java.lang.ArrayIndexOutOfBoundsException a){
+			return false;
+		}
+		this.arr[pos] = null;
+		this.ocupados--;
+		return true;
 
-	@Override
+	}
+	
+	/**
+	 * remueve el elemento "e" del arreglo
+	 **/
 	public boolean remove(E e) {
-		/*Implementar*/
-		return false;
+		int pos = this.getPos(e);
+		if (pos == -1){
+			return false;
+		}
+		Object temp[] = new Object[this.arr.length];
+
+		System.arraycopy(this.arr, 0, temp, 0, pos);
+		System.arraycopy(this.arr,pos+1,temp,pos,this.arr.length-(pos+1));
+
+		this.arr = temp;
+		this.ocupados--;
+		return true;
+	}
+	
+	/**
+	 * devuelve la posicion en el arreglo del
+	 *  elemento "e", devuelve -1 si no existe en el arreglo
+	 **/
+	public int getPos(E e){
+		if (e==null){
+			return -1;
+		}
+		
+		int i = 0;
+		if (this.arr.length == 0) 
+				return -1;
+		else {
+		try{
+			while((!e.equals(this.arr[i])) && (i < this.arr.length)) {
+				i++;
+			}
+		}
+		catch(java.lang.ArrayIndexOutOfBoundsException a){
+			return -1;
+		}
+
+		if (e.equals(this.arr[i])){
+			return i;
+		}
+		return -1;
+		}
+		
 	}
 } /*Fin de arrDin*/

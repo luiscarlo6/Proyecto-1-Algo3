@@ -9,7 +9,7 @@ public class Nodo {
 	private String id = null;
 
 	/**
-	 * Construcctor por defecto
+	 * Constructor por defecto
 	 **/
 	
 	public Nodo(){

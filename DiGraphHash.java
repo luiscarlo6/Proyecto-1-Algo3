@@ -5,21 +5,59 @@
 public class DiGraphHash implements Graph{
 	
 	private int numNodos, numArcos;
-	private Nodo nodos[];
-	private Lista<Arco> arcos[];
+	private ArrDin<Nodo> nodos;
+	private ArrDin<Lista<Arco>> arcosIn;
+	private ArrDin<Lista<Arco>> arcosOut;
 
 	public DiGraphHash () {
-		/* implementar */
+		this.nodos = new ArrDin<Nodo>();
+		this.arcosIn = new ArrDin<Lista<Arco>>();
+		this.arcosOut = new ArrDin<Lista<Arco>>();
+		this.numArcos = 0;
+		this.numNodos = 0;
 	}
 
 	/**
 	 * Agrega el nodo n. Si el nodo ya existe en el grafo, retorna false.
 	 * Si se agrega correctamente el nodo, retorna true.
 	 */
-	public boolean add(Nodo n) {
+	@Override
+	public boolean add(Nodo n){
+		if (n==null){
+			return false;
+		}
+		
+		if(this.numNodos >= this.nodos.tam()*0.7){
+//			this.Ampliar();
+			System.out.println("GRAFO LLENO "+this.numNodos+" Nodos"+ this.nodos.tam()*0.7);
+			return false;
+		}
+		
+		int pos = n.hashCode()%this.nodos.tam();
 
-		/* implementar */
-		return false;
+		if (this.nodos.get(pos)!=null){
+			boolean esta = false;
+			int i = pos;
+			int j = 0;
+			while (this.nodos.get(i%this.nodos.tam())!=null &&
+					!esta && j!=this.nodos.tam()){
+				esta = n.equals(this.nodos.get(i%this.nodos.tam()));
+				i++;
+				j++;
+			}
+			
+			if (!esta){
+				pos = i%this.nodos.tam();
+
+			}
+		}
+		
+		this.nodos.add(n, pos);
+		this.arcosIn.add(new MiLista<Arco>(),pos);
+		this.arcosOut.add(new MiLista<Arco>(),pos);
+		this.numNodos++;
+		return true;
+
 	}
 
 	/**
@@ -27,10 +65,72 @@ public class DiGraphHash implements Graph{
 	 * o si ya existe un lado entre dichos nodos, retorna false. 
 	 * Si se agrega correctamente el nodo, retorna true.
 	 */
+	@Override
 	public boolean add(Arco a) {
-
-		/* implementar */
-		return false;
+		if (a==null){
+			return false;
+		}
+		
+		Nodo src = new Nodo(a.getSrc());
+    	Nodo dst = new Nodo(a.getDst());
+    	boolean estaSrc = false;
+    	boolean estaDst = false;
+    	
+    	int posSrc = src.hashCode()%this.nodos.tam();
+    	int posDst = dst.hashCode()%this.nodos.tam();
+    	
+    	if (this.nodos.get(posSrc)!=null &&
+    		this.nodos.get(posDst)!=null){
+    		
+    		if (!src.equals((this.nodos.get(posSrc)))){
+    			int i = posSrc+1;
+    			int j = 0;
+    			estaSrc = false;
+    			while (this.nodos.get(i%this.nodos.tam())!=null&&
+    					!estaSrc & j!=this.nodos.tam()){
+    				if (src.equals((this.nodos.get(i%this.nodos.tam())))){
+    					posSrc = i%this.nodos.tam();
+    					estaSrc = true;
+    				}
+    				i++;
+    				j++;
+    			}
+    		}
+    		else
+    			estaSrc = true;
+    		
+    		if (!dst.equals((this.nodos.get(posDst)))){
+    			int i = posDst+1;
+    			int j = 0;
+    			estaDst = false;
+    			while (this.nodos.get(i%this.nodos.tam())!=null&&
+    					!estaDst & j!=this.nodos.tam()){
+    				if (dst.equals((this.nodos.get(i%this.nodos.tam())))){
+    					posDst = i%this.nodos.tam();
+    					estaDst = true;
+    				}
+    				i++;
+    				j++;
+    			}
+    		}
+    		else
+    			estaDst = true;
+    		
+    		if (estaSrc && estaDst){
+    			MiLista<Arco> In =(MiLista<Arco>) this.arcosIn.get(posDst);
+    			MiLista<Arco> Out =(MiLista<Arco>) this.arcosOut.get(posSrc);
+    			
+    			if (!In.contains(a)){
+    				In.add(a);
+    				this.numArcos++;
+    			}
+    			if (!Out.contains(a)){
+    				Out.add(a);
+    			}
+    			return true;
+    		}
+    	}
+    	return false;
 	}
 
 	/**

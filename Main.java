@@ -7,25 +7,25 @@ public class Main {
 	public static void main(String[] args) {
 		long tiempoInicio = System.currentTimeMillis();
 		Nodo A;
-		int max = 100000;
-		int colisiones = 0;
-		Lista<Nodo> lis = new MiLista<Nodo>();
-		boolean arr[] = new boolean[max];
-		for (int i=0;i!=max;i++){
-			A=new Nodo("Nodo_"+i);
-			System.out.println(i+" "+lis.add(A));
-			if (arr[A.hashCode()%max]==true){
-				
-//				System.out.println("colision en "+A.hashCode()+" "+(A.hashCode()%max)+" "+A.toString());
-				colisiones++;
-			}
-			lis.add(A);
-			arr[A.hashCode()%max]=true;
+		Arco B;
+		int max = 50;
+		Graph grafo = new DiGraphHash();
+		
+		for (int i = 0;i!=max;i++){
+			A = new Nodo("Nodo_"+1);
+			grafo.add(A);
 		}
-
-		System.out.println("colisiones "+colisiones);
+		
+		for (int i = 0;i!=max;i++){
+			B = new Arco("Nodo_"+1);
+			grafo.add(A);
+		}
 		long totalTiempo = System.currentTimeMillis() - tiempoInicio;
 		System.out.println("El tiempo de demora es :" + totalTiempo + " miliseg");
 	}
 
 }
+
+
+
+
