@@ -81,7 +81,7 @@ public class Nodo {
 		 
 //		hash = Math.abs(this.id.hashCode());
 
-		return Math.abs(hash);
+		return (hash);
 		
 //		int radix = 131; /*Que es equivalente a 2^7*/
 //		int hash=0;/*Valor del string id*/

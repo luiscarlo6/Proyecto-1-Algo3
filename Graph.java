@@ -93,4 +93,6 @@ public interface Graph {
 	 */
 	@Override
 	public String toString();
+
+	public int colisiones();
 }

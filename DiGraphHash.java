@@ -5,6 +5,7 @@
 public class DiGraphHash implements Graph{
 	
 	private int numNodos, numArcos;
+	public int colisiones;
 	private ArrDin<Nodo> nodos;
 	private ArrDin<Lista<Arco>> arcosIn;
 	private ArrDin<Lista<Arco>> arcosOut;
@@ -17,19 +18,11 @@ public class DiGraphHash implements Graph{
 		this.numNodos = 0;
 	}
 	
-
-	private ArrDin<Nodo> getArrNodos(){
-		return this.nodos;
+	@Override
+	public int colisiones(){
+		return this.colisiones;
 	}
-	
-	private ArrDin<Lista<Arco>> getArrIn(){
-		return this.arcosIn;
-	}
-	
-	private ArrDin<Lista<Arco>> getArrOut(){
-		return this.arcosOut;
-	}
-	
+		
 	/**
 	 * Agrega el nodo n. Si el nodo ya existe en el grafo, retorna false.
 	 * Si se agrega correctamente el nodo, retorna true.
@@ -40,17 +33,19 @@ public class DiGraphHash implements Graph{
 			return false;
 		}
 
-		if(this.numNodos >= this.nodos.tam()*0.7){
+		if(this.numNodos >= this.nodos.tam()*0.5){
 			this.ampliar();
 //			System.out.println("GRAFO LLENO "+this.numNodos+" Nodos"+ this.nodos.tam()*0.7);
 //			return false;
 		}
 
-		int pos = n.hashCode()%this.nodos.tam();
+//		int pos = n.hashCode()%this.nodos.tam();
+		int pos = this.posHash(n);
 		boolean esta = false;
 		if (this.nodos.get(pos)!=null){
 			int i = pos;
 			int j = 0;
+			this.colisiones++;
 			while (this.nodos.get(i%this.nodos.tam())!=null &&
 					!esta && j!=this.nodos.tam()){
 				esta = n.equals(this.nodos.get(i%this.nodos.tam()));
@@ -67,7 +62,7 @@ public class DiGraphHash implements Graph{
 			this.nodos.add(n, pos);
 			this.arcosIn.add(new MiLista<Arco>(),pos);
 			this.arcosOut.add(new MiLista<Arco>(),pos);
-			this.numNodos++;
+			this.numNodos++;			
 			return true;
 		}
 		return false;
@@ -413,10 +408,48 @@ public class DiGraphHash implements Graph{
 	/**
 	 * Devuelve una representacion en String del grafo.
 	 */
+	@SuppressWarnings("unchecked")
+	@Override
 	public String toString() {
-
-		/* implementar */
-		return "";
+		String ret = "";
+    	
+    	if (this.numNodos==0){
+        	return 	ret;
+        }        
+    	
+        int i = 0;
+        int k = 0;
+        while (i!=this.nodos.tam()){
+        	
+        	if (this.nodos.get(i)!=null){
+        		Nodo n = (Nodo)this.nodos.get(i);
+        		ret = ret+"\n"+n.toString()+"\n";
+        		MiLista<Arco> listaIn =(MiLista<Arco>) this.arcosIn.get(i);
+        		MiLista<Arco> listaOut = ((MiLista<Arco>) this.arcosOut.get(i));
+        		ListIterator<Arco> it = listaIn.iterator();
+        		k = 0;
+        		
+        		while (k!=listaIn.getSize()) {
+            		Arco a = it.next();
+            		ret = ret+ a.toString();
+            		k++;
+            	}
+        		
+        		
+        		it = listaOut.iterator();
+        		k = 0;
+        		while (k!=listaOut.getSize()) {
+            		Arco a = it.next();
+            		ret = ret + a.toString();
+            		k++;
+            	}
+        	}
+        	i++;
+        	
+        }
+        
+    	ret = ret +"\nNodos "+this.numNodos + ":Arcos " + this.numArcos;
+		return ret;
 	}
 	
 	private int pos(Nodo n){
@@ -425,7 +458,8 @@ public class DiGraphHash implements Graph{
 		}
 		
 		boolean esta = false;
-		int pos = n.hashCode()%this.nodos.tam();
+//		int pos = n.hashCode()%this.nodos.tam();
+		int pos = this.posHash(n);
 		
 		if (n.equals(this.nodos.get(pos))){
 			return pos;
@@ -468,6 +502,14 @@ public class DiGraphHash implements Graph{
     	return -1;
 	}
 	
+	private int posHash(Nodo n){
+		int pos = n.hashCode()%this.nodos.tam();
+		if (pos<0){
+			pos = pos + this.nodos.tam();
+		}
+		return pos;
+	}
+	
 	private void ampliar(){
 		Lista<Nodo> nodos = this.getNodos();
 		Lista<Arco> arcos = this.getArcos();
@@ -476,6 +518,7 @@ public class DiGraphHash implements Graph{
 		this.arcosOut.resize();
 		this.numArcos = 0;
 		this.numNodos = 0;
+		this.colisiones =0;
 		
 		ListIterator<Nodo> it1 = ((MiLista<Nodo>)nodos).iterator();
 		int i = 0;

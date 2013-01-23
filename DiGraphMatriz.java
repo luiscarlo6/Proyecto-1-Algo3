@@ -178,4 +178,10 @@ public class DiGraphMatriz implements Graph{
 		/* implementar */
 		return "";
 	}
+
+	@Override
+	public int colisiones() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
