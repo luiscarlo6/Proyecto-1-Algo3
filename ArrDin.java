@@ -28,6 +28,7 @@ public class ArrDin<E>{
 		if (e==null){
 			return false;
 		}
+		System.gc();
 		
 		this.ampliar();
 		this.arr[this.ocupados] = e;
