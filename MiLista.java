@@ -331,7 +331,7 @@ public class MiLista<E> implements Lista<E>{
 	   		E Temp;
                
 	   		Temp=this.Actual.elemento();
-	   		this.Actual=((Caja<E>) this.Actual.siguiente());
+	   		this.Actual=this.Actual.cajaSig();
 	   		this.cont++;
 	   		return Temp;
 	   	}
@@ -349,7 +349,7 @@ public class MiLista<E> implements Lista<E>{
 	   		E Temp;
                
    	   		Temp=this.Actual.elemento();
-   	   		this.Actual=((Caja<E>) this.Actual.anterior());
+   	   		this.Actual=this.Actual.cajaAnt();
    	   		this.cont--;
    	   		return Temp;
 	   	}

@@ -93,7 +93,7 @@ public class ArrDin<E>{
 		Object nuevoArr[] = new Object[nuevoTam];
 		this.arr = nuevoArr;
 
-	}
+	}	
 	
 	/**
 	 * Elimina todos los elementos del arreglo

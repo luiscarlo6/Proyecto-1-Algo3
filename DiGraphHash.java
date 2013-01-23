@@ -81,25 +81,16 @@ public class DiGraphHash implements Graph{
     	boolean estaDst = posDst!=-1;
     	
     	if (estaSrc && estaDst){
-    		MiLista<Arco> in =(MiLista<Arco>) this.arcosOut.get(posSrc);
-			MiLista<Arco> out =(MiLista<Arco>) this.arcosIn.get(posDst);
-			if (posDst==posSrc){
-				boolean sal = in.contains(a); 
-				if (!sal){
-					in.add(a);
-					this.numArcos++;
-    				return true;
-				}
-			}
-			else{				
-				boolean as = in.contains(a) && out.contains(a);
-				if (!as){
-					out.add(a);
-					in.add(a);
-					this.numArcos++;
-					return true;
-				}
-				return false;
+    		MiLista<Arco> out =(MiLista<Arco>) this.arcosOut.get(posSrc);
+			MiLista<Arco> in =(MiLista<Arco>) this.arcosIn.get(posDst);
+						
+			boolean as = in.contains(a) && out.contains(a);
+			if (!as){
+				
+				out.add(a);
+				in.add(a);
+				this.numArcos++;
+				return true;
 			}
 		}
 		return false;
@@ -119,21 +110,13 @@ public class DiGraphHash implements Graph{
 	 * Retorna true si el grafo contiene un nodo igual a n,
 	 * si no retorna false.
 	 */
+	@Override
 	public boolean contains(Nodo n) {
-		if (this.numNodos==0){
+		if (this.numNodos==0||n==null){
 			return false;
 		}
-		boolean esta = false;
-		int i = n.hashCode()%this.nodos.tam();
-		
-		if (n.equals(this.nodos.get(i))){
-			return true;
-		}
-		i++;
-		while (this.nodos.get(i%this.nodos.tam())!=null && !esta){
-			esta = n.equals(this.nodos.get(i%this.nodos.tam()));
-			i++;
-		}
+		int pos = this.pos(n);
+		boolean esta = pos!=-1;
 		return esta;
 	}
 
@@ -141,46 +124,31 @@ public class DiGraphHash implements Graph{
 	 * Retorna true si el grafo contiene un arco igual a a,
 	 * si no retorna false.
 	 */
+	@Override
+	@SuppressWarnings("unchecked")
 	public boolean contains(Arco a) {
-
-		boolean esta = false;
+		if (a==null||this.numArcos==0){
+			return false;
+		}
     	
     	Nodo src = new Nodo(a.getSrc());
     	Nodo dst = new Nodo(a.getDst());
-    	boolean estaSrc = false;
-    	boolean estaDst = false;
 		
-		int posSrc = src.hashCode()%this.nodos.tam();
-    	int posDst = dst.hashCode()%this.nodos.tam();
-    	if (this.nodos.get(posSrc)==null || this.nodos.get(posDst)==null){
-    		return false;
+		int posSrc = this.pos(src);
+    	int posDst = this.pos(dst);
+    	boolean estaSrc = posSrc!=-1;
+    	boolean estaDst = posDst!=-1;
+    	
+    	boolean estaArcoSrc = false;
+		boolean estaArcoDst = false;
+    	
+    	if (estaSrc && estaDst){
+    		estaArcoSrc = ((MiLista<Arco>) this.arcosOut.get(posSrc)).contains(a);
+    		estaArcoDst = ((MiLista<Arco>) this.arcosIn.get(posDst)).contains(a);
     	}
-    	else{
-    		if(src.equals(this.nodos.get(posSrc))){
-    			esta =((Lista<Arco>) this.arcosOut.get(posSrc)).contains(a);
-	  			
-    		}
-    		else{
+    	
+		return estaArcoSrc && estaArcoDst;
 
-	    		int i = posSrc+1;
-	    		int j = 0;
-	    		estaSrc = false;
-	  		  	while (this.nodos.get(i%this.nodos.tam())!=null&&
-	  		  			!estaSrc&&j!=this.nodos.tam()){
-	  		  	
-	  		  		if(src.equals(this.nodos.get(i%this.nodos.tam()))){
-	  		  			posSrc = i%this.nodos.tam();
-	  		  			estaSrc = true;
-	  		  		}
-	  		  		i++;
-	  		  		j++;
-	  		  	}
-	  		  	if (estaSrc){
-	  		  		esta = ((Lista<Arco>)this.arcosOut.get(posSrc)).contains(a);
-	  		  	}
-    		}
-    		return esta;
-    	}
 	}
 
 	/**
@@ -188,9 +156,37 @@ public class DiGraphHash implements Graph{
 	 * Si el grafo se modifica (si el nodo existia en este), retorna true.
 	 * Si el grafo se mantiene igual, retorna false.
 	 */
+	@Override
+	@SuppressWarnings("unchecked")
 	public boolean remove(Nodo n) {
+		if (n==null||this.numNodos==0){
+			return false;
+		}
+		int pos = this.pos(n);
+		boolean esta = pos!=-1;
+		
+		if (esta){
+			Object[] arcosIn = ((MiLista<Arco>) this.arcosIn.get(pos)).toArray();
+			Object[] arcosOut = ((MiLista<Arco>) this.arcosOut.get(pos)).toArray();
+			int i = 0;
+			while (i!=arcosIn.length){
+				Arco arc = (Arco) arcosIn[i];
+				this.remove(arc);
+				i++;
+			}
+			i=0;
+			while (i!=arcosOut.length){
+				Arco arc = (Arco) arcosOut[i];
+				this.remove(arc);
+				i++;
+			}
 
-		/* implementar */
+			this.arcosIn.remove(pos);
+			this.arcosOut.remove(pos);
+			this.nodos.remove(pos);
+			this.numNodos--;
+			return true;
+		}
 		return false;
 	}
 
@@ -199,80 +195,206 @@ public class DiGraphHash implements Graph{
 	 * Si el grafo se modifica (si el arco existia en este), retorna true.
 	 * Si el grafo se mantiene igual, retorna false.
 	 */
+	@Override
+	@SuppressWarnings("unchecked")
 	public boolean remove(Arco a) {
-
-		/* implementar */
-		return false;
+		if (a==null||this.numArcos==0){
+			return false;
+		}
+		Nodo src = new Nodo(a.getSrc());
+    	Nodo dst = new Nodo(a.getDst());
+		
+		int posSrc = this.pos(src);
+    	int posDst = this.pos(dst);
+    	boolean estaSrc = posSrc!=-1;
+    	boolean estaDst = posDst!=-1;
+    	
+    	if (estaSrc && estaDst){
+    		MiLista<Arco> out =((MiLista<Arco>) this.arcosOut.get(posSrc));
+			MiLista<Arco> in =((MiLista<Arco>) this.arcosIn.get(posDst));
+			boolean quitado = out.remove(a)&&in.remove(a);
+			if (quitado)
+				this.numArcos--;
+			return quitado;
+		}
+			return false;
 	}
 
 	/**
 	 * Devuelve una lista con todos los nodos del grafo.
 	 */
+	@Override
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Lista<Nodo> getNodos() {
-
-		/* implementar */
-		return null;
+		Lista<Nodo> lista = new MiLista();
+		int i = 0;
+		int j = 0;
+		
+		while(i!=this.nodos.tam() && j!=this.numNodos){
+			if (this.nodos.get(i)!=null){
+				lista.add( (Nodo) this.nodos.get(i));
+				j++;
+			}
+			i++;
+		}
+		return lista;
 	}
 	
 	/**
 	 * Devuelve una lista con todos los arcos del grafo.
 	 */
+	@Override
+	@SuppressWarnings("unchecked")
 	public Lista<Arco> getArcos() {
-
-		/* implementar */
-		return null;
+    	Lista<Arco> lista = new MiLista<Arco>();
+    	Arco a = null;
+    	
+    	if (this.numArcos==0){
+        	return lista;
+        }        
+    	
+        int i = 0;
+        int k = 0;
+        while (i!=this.nodos.tam()){
+        	
+        	if (this.nodos.get(i)!=null){
+        			
+        		MiLista<Arco> listaIn =(MiLista<Arco>) this.arcosIn.get(i);
+        		MiLista<Arco> listaOut = ((MiLista<Arco>) this.arcosOut.get(i));
+        		ListIterator<Arco> it = listaIn.iterator();
+        		k = 0;
+        		
+        		while (k!=listaIn.getSize()) {
+            		a = it.next();
+            		if (!lista.contains(a)){
+            			lista.add(a);
+            		}
+            		k++;
+            	}
+        		
+        		
+        		it = listaOut.iterator();
+        		k = 0;
+        		while (k!=listaOut.getSize()) {
+            		a = it.next();
+            		if (!lista.contains(a)){
+            			lista.add(a);
+            		}
+            		k++;
+            	}
+        	}
+        	i++;
+        	
+        }
+        
+    	
+		return lista;
 	}
 
 	/**
 	 * Devuelve el numero de nodos que hay en el grafo.
 	 */
+	@Override
 	public int getNumNodos() {
-
 		return this.numNodos;
 	}
 	
 	/**
 	 * Devuelve el numero de arcos que hay en el grafo.
 	 */
+	@Override
 	public int getNumArcos() {
-
 		return this.numArcos;
 	}
 
 	/**
 	 * Devuelve una lista con los predecesores del nodo n.
 	 */
+	@Override
+	@SuppressWarnings("unchecked")
 	public Lista<Nodo> getPred(Nodo n) {
+		Lista<Nodo> lista = new MiLista<Nodo>();
+    	if (this.numArcos==0){
+        	return lista;
+        }
 
-		/* implementar */
-		return null;
+        int pos = this.pos(n);
+        boolean esta = pos!=-1;
+       
+    	if (esta){
+    		MiLista<Arco> listaIn = ((MiLista<Arco>) this.arcosIn.get(pos));
+			ListIterator<Arco> it = listaIn.iterator();
+    		int k = 0;
+    		Nodo a = null;
+    		while (k!=listaIn.getSize()) {
+        		a = new Nodo(it.next().getSrc());
+    			lista.add(a);
+        		k++;
+        	}
+		}
+    	return lista;
 	}
+        
+        	
 
 	/**
 	 * Devuelve una lista con los sucesores del nodo n.
 	 */
+	@Override
+	@SuppressWarnings("unchecked")
 	public Lista<Nodo> getSuc(Nodo n) {
+		Lista<Nodo> lista = new MiLista<Nodo>();
+    	if (this.numArcos==0){
+        	return lista;
+        }
 
-		/* implementar */
-		return null;
+        int pos = this.pos(n);
+        boolean esta = pos!=-1;
+       
+    	if (esta){
+    		MiLista<Arco> listaOut = ((MiLista<Arco>) this.arcosOut.get(pos));
+			ListIterator<Arco> it = listaOut.iterator();
+    		int k = 0;
+    		Nodo a = null;
+    		while (k!=listaOut.getSize()) {
+        		a = new Nodo(it.next().getDst());
+    			lista.add(a);
+        		k++;
+        	}
+		}
+    	return lista;
 	}
 
 	/**
 	 * Devuelve una lista con los arcos que tienen al nodo n como destino.
 	 */
+	@SuppressWarnings("unchecked")
+	@Override
 	public Lista<Arco> getIn(Nodo n) {
 
-		/* implementar */
-		return null;
+		int pos = this.pos(n);
+		boolean esta = pos!=-1;
+		
+		if (esta){
+			return ((Lista<Arco>) this.arcosIn.get(pos));
+		}
+		return new MiLista<Arco>();
 	}
 
 	/**
 	 * Devuelve una lista con los arcos que tienen al nodo n como fuente.
 	 */
+	@SuppressWarnings("unchecked")
+	@Override
 	public Lista<Arco> getOut(Nodo n) {
 
-		/* implementar */
-		return null;
+		int pos = this.pos(n);
+		boolean esta = pos!=-1;
+			
+		if (esta){
+			return ((Lista<Arco>) this.arcosOut.get(pos));
+		}
+		return new MiLista<Arco>();
 	}
 
 	/**
@@ -301,29 +423,6 @@ public class DiGraphHash implements Graph{
 			pos++;
 		}
 
-//    	boolean esta = false;
-//    	
-//    	int pos = n.hashCode()%this.nodos.tam();
-//    	
-//    	if (this.nodos.get(pos)!=null){
-//    		
-//    		if (!n.equals((this.nodos.get(pos)))){
-//    			int i = pos+1;
-//    			int j = 0;
-//    			esta = false;
-//    			while (this.nodos.get(i%this.nodos.tam())!=null&&
-//    					!esta & j!=this.nodos.tam()){
-//    				if (n.equals((this.nodos.get(i%this.nodos.tam())))){
-//    					pos = i%this.nodos.tam();
-//    					esta = true;
-//    				}
-//    				i++;
-//    				j++;
-//    			}
-//    		}
-//    		else
-//    			esta = true;
-//    	}
     	if (esta)
     		return pos-1;
     	
