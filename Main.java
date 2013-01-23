@@ -4,6 +4,101 @@ public class Main {
 	/**
 	 * @param args
 	 */
+	 
+	 
+	public static void main(String[] args) {
+		
+		DiGraphMatriz G;
+		
+		G = new DiGraphMatriz ();
+		Nodo  t;
+		
+		
+		int i=0;
+		
+		while (i!=7){
+			
+			//System.out.println("Nodo"+i);
+			Nodo n = new Nodo("Nodo_"+i);
+			G.add(n);
+			i++;
+			
+		}
+		
+		i=0;
+		
+		while (i!=10){
+			
+			//System.out.println("Nodo"+i);
+			Arco n = new Arco("Nodo_"+i,"Nodo_"+(i+1));
+			//System.out.println(G.add(n));
+			G.add(n);
+			i++;
+			
+		}
+		
+		i=0;
+		
+		while (i!=10){
+			
+			//System.out.println("Nodo"+i);
+			Arco n = new Arco("Nodo_"+(i+1),"Nodo_"+i);
+			//System.out.println(G.add(n));
+			G.add(n);
+			i++;
+			
+		}
+		
+		
+		i=0;
+		/*while (i!=10){
+			
+			//new Nodo("Nodo_"+i)));
+			Nodo n = new Nodo("Nodo_"+i*2);
+			System.out.println(G.remove(n));
+			i++;
+			
+		}*/
+		
+		while (i!=10){
+			
+			//System.out.println("Nodo"+i);
+			Arco n = new Arco("Nodo_"+i,"Nodo_"+(i+1));
+			//System.out.println(G.add(n));
+			G.add(n);
+			i++;
+			
+		}
+		
+		i=0;
+		while (i!=10){
+			
+			//System.out.println("Nodo"+i);
+			Arco n = new Arco("Nodo_"+i,"Nodo_"+(i+1));
+			//System.out.println(G.add(n));
+			G.remove(n);
+			i++;
+			
+		}
+		
+		i=0;
+		
+		while (i!=10){
+			
+			//System.out.println("Nodo"+i);
+			Arco n = new Arco("Nodo_"+(i+1),"Nodo_"+i);
+			//System.out.println(G.add(n));
+			G.remove(n);
+			i++;
+			
+		}
+		
+		G.Imprimir1();
+		
+	}
+	 
+	 
+	/* 
 	public static void main(String[] args) {
 		
 		Nodo A;
@@ -144,7 +239,7 @@ public class Main {
 		System.out.println(p);
 		return d1;
 	    }
-
+*/
 }
 
 
