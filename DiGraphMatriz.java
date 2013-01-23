@@ -51,9 +51,10 @@ public class DiGraphMatriz implements Graph{
 		
 		if (Temp[0]>-1 && Temp[1]>-1){
 			this.arcos[Temp[0]][Temp[1]]=true;
+			this.numArcos++;
 			return true;
 			
-		};
+		}
 		
 		return false;
 	}
