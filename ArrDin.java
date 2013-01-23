@@ -43,12 +43,13 @@ public class ArrDin<E>{
 		if (e==null){
 			return false;
 		}		
-		this.ampliar();
 		if (this.arr[pos]==null){
 			this.ocupados++;
 		}
 		this.arr[pos] = e;
 		return true;
+		
+		
 	}
 	
 	/**

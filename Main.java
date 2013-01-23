@@ -8,7 +8,7 @@ public class Main {
 		long tiempoInicio = System.currentTimeMillis();
 		Nodo A;
 		Arco B;
-		int max = 100;
+		int max =200;
 		Graph grafo = llenar(true,true,max);
 
 		for (int i = 0; i < max; i++) {
@@ -23,7 +23,7 @@ public class Main {
 
 		    Nodo n2 = new Nodo("Nodo_"+j);
 			Arco a = new Arco(n1.toString(), n2.toString());
-		    System.out.println("contains arco:"+a.toString()+" "+grafo.contains(a));
+//		    System.out.println("contains arco:"+a.toString()+" "+grafo.contains(a));
 //			grafo.remove(a);
 		    }
 		}
@@ -71,7 +71,7 @@ public class Main {
 //			System.out.println(B.toString());
 		}
 		
-		
+		System.out.println("Arcos: "+grafo.getNumArcos()+" Nodos: "+grafo.getNumNodos());
 		long totalTiempo = System.currentTimeMillis() - tiempoInicio;
 		System.out.println("El tiempo de demora es :" + totalTiempo + " miliseg");
 	}
@@ -91,14 +91,14 @@ public class Main {
 //		    System.out.println("add "+n.toString()+" "+d1.add(n));
 		    
 		}
-		
+		int p=0;
 		for (int i = 0; i < maxN; i += 2) {
 		    Nodo n1 = new Nodo("Nodo_"+i);
 
 		    for (int j = 1; j < maxN; j += 2) {
 			Nodo n2 = new Nodo("Nodo_"+j);
 			Arco a = new Arco(n1.toString(), n2.toString());
-
+			p++;
 			boolean b1 = false;
 			boolean b2 = false;
 
@@ -113,7 +113,7 @@ public class Main {
 //					System.out.printf("Agregando %s %s\n" , a, b2);
 		    }
 		}
-
+		System.out.println(p);
 		return d1;
 	    }
 
