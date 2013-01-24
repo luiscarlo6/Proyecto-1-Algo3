@@ -1,5 +1,3 @@
-import java.lang.Math;
-
 /**
  * Clase que almacena la informacion de las aristas en el grafo.
  */
@@ -92,7 +90,7 @@ public class Arco {
     		hash = 37 * hash + this.dst.charAt(i);
     	}
     	
-    	return Math.abs(hash);
+    	return (hash);
     	
 //		int radix = 128; /*Que es equivalente a 2^7*/
 //		int hash=0;/*Valor del string src*/

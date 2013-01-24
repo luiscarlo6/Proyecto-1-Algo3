@@ -1,4 +1,3 @@
-import java.lang.Math;
 /**
  * Clase que almacena la informacion de las aristas en el grafo.
  */

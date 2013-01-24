@@ -339,7 +339,7 @@ public class MiLista<E> implements Lista<E>{
 	   	@Override
         public void unlink() {
 	   		E Temp;
-	   		Temp= this.Actual.anterior();
+	   		Temp = this.Actual.anterior();
 	   		this.ListaAux.remove(Temp);
 	   	}
            
