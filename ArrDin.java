@@ -15,7 +15,7 @@ public class ArrDin<E>{
 	 * Construcctor por defecto
 	 **/
 	public ArrDin(){
-		this.anterior = 890;
+		this.anterior = 89;
 		this.actual = 144;
 		this.ocupados = 0;
 		this.arr = new Object[actual];
