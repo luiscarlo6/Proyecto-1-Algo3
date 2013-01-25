@@ -12,11 +12,21 @@ public class DiGraphMatriz implements Graph{
 	public DiGraphMatriz () {
 		this.numNodos = 0;
 		this.numArcos = 0;
-		this.anterior = 89;
-		this.actual = 144;
+		this.anterior = 3;
+		this.actual = 5;
 		this.nodos = new Nodo[this.actual];
 		this.arcos = new boolean[this.actual][this.actual];
 	}
+	
+	private  DiGraphMatriz (int anterior, int actual) {
+		this.numNodos = 0;
+		this.numArcos = 0;
+		this.anterior = anterior;
+		this.actual = actual;
+		this.nodos = new Nodo[this.actual];
+		this.arcos = new boolean[this.actual][this.actual];
+	}
+	
 
 	/**
 	 * Agrega el nodo n. Si el nodo ya existe en el grafo, retorna false.
@@ -65,9 +75,39 @@ public class DiGraphMatriz implements Graph{
 	 */
 	@Override
 	public Object clone() {
+		
+		DiGraphMatriz nuevaMatriz=null;
+		int i=0,j=0,cont=0;
+		
+		nuevaMatriz=new DiGraphMatriz (this.anterior,this.actual); 
+		
+		while(i!=this.numNodos){
+			nuevaMatriz.add(new Nodo(this.nodos[i].toString()));
+			i++;
+		}
+		
+		i=0;j=0;
+		while(i!=this.arcos.length && cont!=this.numArcos){
+			j=0;
+			while(j!=this.arcos.length && cont!=this.numArcos){
+				if (this.arcos[i][j]){
+					nuevaMatriz.arcos[i][j]=true;
+					cont++;
+				}
+				j++;
+			}
+			
+			i++;
+		}
+		nuevaMatriz.numArcos=cont;
+			
+		
+		
+		
+		return nuevaMatriz;
+		
 
-		/* implementar */
-		return null;
+		
 	}
 
 	/**
@@ -384,20 +424,12 @@ public class DiGraphMatriz implements Graph{
 		return 0;
 	}
 	
-	public void Imprimir(){
-		DiGraphMatriz Aux;
-		Aux = this;
-		int i;
-		
-		i=0;
-		while(i!=this.numNodos){
-			System.out.println(Aux.nodos[i]);
-			i++;
-			
-		}
-		
-		
-	}
+	/********************************************************************************************
+	 * ************************************************************************************
+	 * ****************************************************************************************/
+	
+	
+	
 	
 	
 	
@@ -536,9 +568,30 @@ private final int Buscar(String N1){
 		return Pos;
 	}
 	
+/*******************************************************************************************************
+ * ****************************************************************************************************
+ * ****************************************************************************************************/
 
 
-public final void Imprimir1(){
+
+public void ImprimirNodos(){
+	DiGraphMatriz Aux;
+	Aux = this;
+	int i;
+	
+	i=0;
+	while(i!=this.numNodos){
+		System.out.println(Aux.nodos[i]);
+		i++;
+		
+	}
+	
+	
+}
+
+
+
+public final void ImprimirMatriz(){
 	int i=0;
 	while (i!=this.arcos.length){
 		int j=0;

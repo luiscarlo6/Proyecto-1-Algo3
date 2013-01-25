@@ -7,11 +7,36 @@ public class Main {
 	public static void main(String[] args) {
 		Nodo A;
 		Arco B;
-		int max = 1000;
+		int max = 4,i=0;
 		long tiempoInicio = System.currentTimeMillis();
 		Graph grafo = llenar(false,true,max);
 		long totalTiempo = System.currentTimeMillis() - tiempoInicio;
 		System.out.println("El tiempo de demora para llenar es :" + totalTiempo + " miliseg");
+		
+		DiGraphMatriz Aux=null,Aux2=null;
+		Object clon=null;
+		
+		Aux = (DiGraphMatriz) grafo;
+		clon= Aux.clone();
+		Aux2= (DiGraphMatriz) clon;
+		
+		i=0;
+		while(i!=max){
+			
+			int j=0;
+			while(j!=max){
+				Aux.add(new Arco("Nodo_"+i,"Nodo_"+j));
+				j++;
+			}
+			
+			i++;
+		}
+		
+		Aux.ImprimirMatriz();
+		System.out.println("\n\n");
+		Aux2.ImprimirMatriz();
+		
+		
 
 //		for (int i = 0; i < max; i++) {
 //		    Nodo n = new Nodo("Nodo_"+i);
@@ -30,7 +55,7 @@ public class Main {
 //			System.out.println("contains arco:"+a.toString()+" "+grafo.contains(a));
 //		    }
 //		}
-		
+/*		
 		tiempoInicio = System.currentTimeMillis();
 		Lista<Nodo> listaNodo = grafo.getNodos();
 		totalTiempo = System.currentTimeMillis() - tiempoInicio;
@@ -107,7 +132,7 @@ public class Main {
 		
 		System.out.println("Arcos: "+grafo.getNumArcos()+" Nodos: "+grafo.getNumNodos()+ " Colisiones: "+grafo.colisiones());
 		totalTiempo = System.currentTimeMillis() - tiempoInicio;
-		System.out.println("El tiempo de demora es :" + totalTiempo + " miliseg");
+		System.out.println("El tiempo de demora es :" + totalTiempo + " miliseg");*/
 	}
 	
 	
@@ -144,7 +169,7 @@ public class Main {
 			    if ((i!=2) || (j != 3))
 				b2 = d1.add((Arco) a.clone());
 			
-					System.out.printf("Agregando %s %s\n" , a, b2);
+					//System.out.printf("Agregando %s %s\n" , a, b2);
 		    }
 		}
 		System.out.println(p);
