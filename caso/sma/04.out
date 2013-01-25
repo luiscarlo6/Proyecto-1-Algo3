@@ -1,0 +1,144 @@
+Caso 4 NumNodos 10
+Prueba4
+Nodos: Nodo_0 Predes 0
+Nodos: Nodo_1 Predes 5
+  Nodo_1:Nodo_0
+  Nodo_1:Nodo_2
+  Nodo_1:Nodo_4
+  Nodo_1:Nodo_6
+  Nodo_1:Nodo_8
+Nodos: Nodo_2 Predes 0
+Nodos: Nodo_3 Predes 5
+  Nodo_3:Nodo_0
+  Nodo_3:Nodo_2
+  Nodo_3:Nodo_4
+  Nodo_3:Nodo_6
+  Nodo_3:Nodo_8
+Nodos: Nodo_4 Predes 0
+Nodos: Nodo_5 Predes 5
+  Nodo_5:Nodo_0
+  Nodo_5:Nodo_2
+  Nodo_5:Nodo_4
+  Nodo_5:Nodo_6
+  Nodo_5:Nodo_8
+Nodos: Nodo_6 Predes 0
+Nodos: Nodo_7 Predes 5
+  Nodo_7:Nodo_0
+  Nodo_7:Nodo_2
+  Nodo_7:Nodo_4
+  Nodo_7:Nodo_6
+  Nodo_7:Nodo_8
+Nodos: Nodo_8 Predes 0
+Nodos: Nodo_9 Predes 5
+  Nodo_9:Nodo_0
+  Nodo_9:Nodo_2
+  Nodo_9:Nodo_4
+  Nodo_9:Nodo_6
+  Nodo_9:Nodo_8
+
+Nodos: Nodo_0 Predes 0
+Nodos: Nodo_1 Predes 5
+  Nodo_1:Nodo_0
+  Nodo_1:Nodo_2
+  Nodo_1:Nodo_4
+  Nodo_1:Nodo_6
+  Nodo_1:Nodo_8
+Nodos: Nodo_2 Predes 0
+Nodos: Nodo_3 Predes 5
+  Nodo_3:Nodo_0
+  Nodo_3:Nodo_2
+  Nodo_3:Nodo_4
+  Nodo_3:Nodo_6
+  Nodo_3:Nodo_8
+Nodos: Nodo_4 Predes 0
+Nodos: Nodo_5 Predes 5
+  Nodo_5:Nodo_0
+  Nodo_5:Nodo_2
+  Nodo_5:Nodo_4
+  Nodo_5:Nodo_6
+  Nodo_5:Nodo_8
+Nodos: Nodo_6 Predes 0
+Nodos: Nodo_7 Predes 5
+  Nodo_7:Nodo_0
+  Nodo_7:Nodo_2
+  Nodo_7:Nodo_4
+  Nodo_7:Nodo_6
+  Nodo_7:Nodo_8
+Nodos: Nodo_8 Predes 0
+Nodos: Nodo_9 Predes 5
+  Nodo_9:Nodo_0
+  Nodo_9:Nodo_2
+  Nodo_9:Nodo_4
+  Nodo_9:Nodo_6
+  Nodo_9:Nodo_8
+Prueba4
+Nodos: Nodo_0 Predes 0
+Nodos: Nodo_1 Predes 5
+  Nodo_1:Nodo_0
+  Nodo_1:Nodo_2
+  Nodo_1:Nodo_4
+  Nodo_1:Nodo_6
+  Nodo_1:Nodo_8
+Nodos: Nodo_2 Predes 0
+Nodos: Nodo_3 Predes 5
+  Nodo_3:Nodo_0
+  Nodo_3:Nodo_2
+  Nodo_3:Nodo_4
+  Nodo_3:Nodo_6
+  Nodo_3:Nodo_8
+Nodos: Nodo_4 Predes 0
+Nodos: Nodo_5 Predes 5
+  Nodo_5:Nodo_0
+  Nodo_5:Nodo_2
+  Nodo_5:Nodo_4
+  Nodo_5:Nodo_6
+  Nodo_5:Nodo_8
+Nodos: Nodo_6 Predes 0
+Nodos: Nodo_7 Predes 5
+  Nodo_7:Nodo_0
+  Nodo_7:Nodo_2
+  Nodo_7:Nodo_4
+  Nodo_7:Nodo_6
+  Nodo_7:Nodo_8
+Nodos: Nodo_8 Predes 0
+Nodos: Nodo_9 Predes 5
+  Nodo_9:Nodo_0
+  Nodo_9:Nodo_2
+  Nodo_9:Nodo_4
+  Nodo_9:Nodo_6
+  Nodo_9:Nodo_8
+
+Nodos: Nodo_0 Predes 0
+Nodos: Nodo_1 Predes 5
+  Nodo_1:Nodo_0
+  Nodo_1:Nodo_2
+  Nodo_1:Nodo_4
+  Nodo_1:Nodo_6
+  Nodo_1:Nodo_8
+Nodos: Nodo_2 Predes 0
+Nodos: Nodo_3 Predes 4
+  Nodo_3:Nodo_0
+  Nodo_3:Nodo_4
+  Nodo_3:Nodo_6
+  Nodo_3:Nodo_8
+Nodos: Nodo_4 Predes 0
+Nodos: Nodo_5 Predes 5
+  Nodo_5:Nodo_0
+  Nodo_5:Nodo_2
+  Nodo_5:Nodo_4
+  Nodo_5:Nodo_6
+  Nodo_5:Nodo_8
+Nodos: Nodo_6 Predes 0
+Nodos: Nodo_7 Predes 5
+  Nodo_7:Nodo_0
+  Nodo_7:Nodo_2
+  Nodo_7:Nodo_4
+  Nodo_7:Nodo_6
+  Nodo_7:Nodo_8
+Nodos: Nodo_8 Predes 0
+Nodos: Nodo_9 Predes 5
+  Nodo_9:Nodo_0
+  Nodo_9:Nodo_2
+  Nodo_9:Nodo_4
+  Nodo_9:Nodo_6
+  Nodo_9:Nodo_8

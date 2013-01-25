@@ -1,0 +1,28 @@
+#!/bin/bash
+
+if [ $# -ne 3 ]
+then
+   echo "Sintaxis: $0 <evaluateFile> <notaMax> <DirCasos> "
+   exit -1
+fi
+
+EVA=$1
+GRA=$2
+CAS=$3
+
+rm P*/nohup.out
+
+for i in `ls | grep ^P`
+do
+   echo "$i $EVA $CAS"
+
+   cd $i
+   echo "Proyecto: $i"
+
+   nohup ../$EVA $GRA ../$CAS 
+     echo     ../$EVA 60 4 ../$CAS
+
+    nohup ./$EVA 60 4 ../$CAS
+   
+   cd ..
+done

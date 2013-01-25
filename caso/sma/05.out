@@ -1,0 +1,144 @@
+Caso 5 NumNodos 10
+Prueba5
+Nodos: Nodo_0 Suces 5
+  Nodo_0:Nodo_1
+  Nodo_0:Nodo_3
+  Nodo_0:Nodo_5
+  Nodo_0:Nodo_7
+  Nodo_0:Nodo_9
+Nodos: Nodo_1 Suces 0
+Nodos: Nodo_2 Suces 5
+  Nodo_2:Nodo_1
+  Nodo_2:Nodo_3
+  Nodo_2:Nodo_5
+  Nodo_2:Nodo_7
+  Nodo_2:Nodo_9
+Nodos: Nodo_3 Suces 0
+Nodos: Nodo_4 Suces 5
+  Nodo_4:Nodo_1
+  Nodo_4:Nodo_3
+  Nodo_4:Nodo_5
+  Nodo_4:Nodo_7
+  Nodo_4:Nodo_9
+Nodos: Nodo_5 Suces 0
+Nodos: Nodo_6 Suces 5
+  Nodo_6:Nodo_1
+  Nodo_6:Nodo_3
+  Nodo_6:Nodo_5
+  Nodo_6:Nodo_7
+  Nodo_6:Nodo_9
+Nodos: Nodo_7 Suces 0
+Nodos: Nodo_8 Suces 5
+  Nodo_8:Nodo_1
+  Nodo_8:Nodo_3
+  Nodo_8:Nodo_5
+  Nodo_8:Nodo_7
+  Nodo_8:Nodo_9
+Nodos: Nodo_9 Suces 0
+
+Nodos: Nodo_0 Suces 5
+  Nodo_0:Nodo_1
+  Nodo_0:Nodo_3
+  Nodo_0:Nodo_5
+  Nodo_0:Nodo_7
+  Nodo_0:Nodo_9
+Nodos: Nodo_1 Suces 0
+Nodos: Nodo_2 Suces 5
+  Nodo_2:Nodo_1
+  Nodo_2:Nodo_3
+  Nodo_2:Nodo_5
+  Nodo_2:Nodo_7
+  Nodo_2:Nodo_9
+Nodos: Nodo_3 Suces 0
+Nodos: Nodo_4 Suces 5
+  Nodo_4:Nodo_1
+  Nodo_4:Nodo_3
+  Nodo_4:Nodo_5
+  Nodo_4:Nodo_7
+  Nodo_4:Nodo_9
+Nodos: Nodo_5 Suces 0
+Nodos: Nodo_6 Suces 5
+  Nodo_6:Nodo_1
+  Nodo_6:Nodo_3
+  Nodo_6:Nodo_5
+  Nodo_6:Nodo_7
+  Nodo_6:Nodo_9
+Nodos: Nodo_7 Suces 0
+Nodos: Nodo_8 Suces 5
+  Nodo_8:Nodo_1
+  Nodo_8:Nodo_3
+  Nodo_8:Nodo_5
+  Nodo_8:Nodo_7
+  Nodo_8:Nodo_9
+Nodos: Nodo_9 Suces 0
+Prueba5
+Nodos: Nodo_0 Suces 5
+  Nodo_0:Nodo_1
+  Nodo_0:Nodo_3
+  Nodo_0:Nodo_5
+  Nodo_0:Nodo_7
+  Nodo_0:Nodo_9
+Nodos: Nodo_1 Suces 0
+Nodos: Nodo_2 Suces 5
+  Nodo_2:Nodo_1
+  Nodo_2:Nodo_3
+  Nodo_2:Nodo_5
+  Nodo_2:Nodo_7
+  Nodo_2:Nodo_9
+Nodos: Nodo_3 Suces 0
+Nodos: Nodo_4 Suces 5
+  Nodo_4:Nodo_1
+  Nodo_4:Nodo_3
+  Nodo_4:Nodo_5
+  Nodo_4:Nodo_7
+  Nodo_4:Nodo_9
+Nodos: Nodo_5 Suces 0
+Nodos: Nodo_6 Suces 5
+  Nodo_6:Nodo_1
+  Nodo_6:Nodo_3
+  Nodo_6:Nodo_5
+  Nodo_6:Nodo_7
+  Nodo_6:Nodo_9
+Nodos: Nodo_7 Suces 0
+Nodos: Nodo_8 Suces 5
+  Nodo_8:Nodo_1
+  Nodo_8:Nodo_3
+  Nodo_8:Nodo_5
+  Nodo_8:Nodo_7
+  Nodo_8:Nodo_9
+Nodos: Nodo_9 Suces 0
+
+Nodos: Nodo_0 Suces 5
+  Nodo_0:Nodo_1
+  Nodo_0:Nodo_3
+  Nodo_0:Nodo_5
+  Nodo_0:Nodo_7
+  Nodo_0:Nodo_9
+Nodos: Nodo_1 Suces 0
+Nodos: Nodo_2 Suces 4
+  Nodo_2:Nodo_1
+  Nodo_2:Nodo_5
+  Nodo_2:Nodo_7
+  Nodo_2:Nodo_9
+Nodos: Nodo_3 Suces 0
+Nodos: Nodo_4 Suces 5
+  Nodo_4:Nodo_1
+  Nodo_4:Nodo_3
+  Nodo_4:Nodo_5
+  Nodo_4:Nodo_7
+  Nodo_4:Nodo_9
+Nodos: Nodo_5 Suces 0
+Nodos: Nodo_6 Suces 5
+  Nodo_6:Nodo_1
+  Nodo_6:Nodo_3
+  Nodo_6:Nodo_5
+  Nodo_6:Nodo_7
+  Nodo_6:Nodo_9
+Nodos: Nodo_7 Suces 0
+Nodos: Nodo_8 Suces 5
+  Nodo_8:Nodo_1
+  Nodo_8:Nodo_3
+  Nodo_8:Nodo_5
+  Nodo_8:Nodo_7
+  Nodo_8:Nodo_9
+Nodos: Nodo_9 Suces 0
