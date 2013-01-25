@@ -7,9 +7,9 @@ public class Main {
 	public static void main(String[] args) {
 		Nodo A;
 		Arco B;
-		int max = 2500;
+		int max = 15000;
 		long tiempoInicio = System.currentTimeMillis();
-		Graph grafo = llenar(true,true,max);
+		Graph grafo = llenar(false,true,max);
 		long totalTiempo = System.currentTimeMillis() - tiempoInicio;
 		System.out.println("El tiempo de demora para llenar es :" + totalTiempo + " miliseg");
 

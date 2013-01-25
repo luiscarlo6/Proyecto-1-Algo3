@@ -53,9 +53,7 @@ public class DiGraphMatriz implements Graph{
 			this.arcos[Temp[0]][Temp[1]]=true;
 			this.numArcos++;
 			return true;
-			
 		}
-		
 		return false;
 	}
 
@@ -153,6 +151,7 @@ public class DiGraphMatriz implements Graph{
 			
 			if(this.arcos[Temp[0]][Temp[1]]==true){
 				this.arcos[Temp[0]][Temp[1]]=false;
+				this.numArcos--;
 				return true;
 			}
 		}		
@@ -271,10 +270,14 @@ public class DiGraphMatriz implements Graph{
 	
 	
 	
+	/**
+	 * Redimenciona el arreglo y la matriz cuando numNodos >= nodos.length
+	 */
+	
 	private final void Ampliar(){
 		
 		if (this.numNodos >= this.nodos.length){
-				System.gc();
+				System.gc();//Invocacion del recolector de basura
 				Nodo NodoNuevo[];
 				boolean ArcosNuevos[][];
 				int Temp;
@@ -285,9 +288,11 @@ public class DiGraphMatriz implements Graph{
 				this.actual = this.actual + this.anterior;
 				this.anterior = Temp;
 				
+				//se crean el nuevo arreglo y matriz
 				NodoNuevo = new Nodo[this.actual];
 				ArcosNuevos = new boolean[this.actual][this.actual];
 				
+				//Se copia el arreglo
 				System.arraycopy(this.nodos, 0, NodoNuevo, 0, this.nodos.length);
 				
 				//System.out.println();
@@ -297,7 +302,6 @@ public class DiGraphMatriz implements Graph{
 					//System.out.println("Entreeee"+i);
 					//int[] member = new int[this.actual];
 					System.arraycopy(this.arcos[i], 0, ArcosNuevos[i], 0, this.nodos.length);
-					// = member;
 				}
 				
 				this.nodos = NodoNuevo;
