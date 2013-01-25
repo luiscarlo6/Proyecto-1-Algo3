@@ -7,7 +7,7 @@ public class Main {
 	public static void main(String[] args) {
 		Nodo A;
 		Arco B;
-		int max = 15000;
+		int max = 1000;
 		long tiempoInicio = System.currentTimeMillis();
 		Graph grafo = llenar(false,true,max);
 		long totalTiempo = System.currentTimeMillis() - tiempoInicio;
@@ -45,51 +45,51 @@ public class Main {
 		Lista<Arco> listaArco = grafo.getArcos();
 		totalTiempo = System.currentTimeMillis() - tiempoInicio;
 		System.out.println("El tiempo de demora para getArcos es :" + totalTiempo + " miliseg");
-//		ListIterator<Arco> it2 = ((MiLista<Arco>) listaArco).iterator();
-//		for (int i = 0; i < listaArco.getSize(); i++){
-//			B = it2.next();
-//			System.out.println(B.toString());
-//		}
+		//ListIterator<Arco> it2 = ((MiLista<Arco>) listaArco).iterator();
+		//for (int i = 0; i < listaArco.getSize(); i++){
+			//B = it2.next();
+			//System.out.println(B.toString());
+		//}
 		
 		tiempoInicio = System.currentTimeMillis();
 		Lista<Nodo> listaPred = grafo.getPred(new Nodo("Nodo_1"));
 		totalTiempo = System.currentTimeMillis() - tiempoInicio;
 		System.out.println("El tiempo de demora para getPred es :" + totalTiempo + " miliseg");
-//		ListIterator<Nodo> it3 = ((MiLista<Nodo>) listaPred).iterator();
-//		for (int i = 0; i < listaPred.getSize(); i++){
-//			A = it3.next();
-//			System.out.println(A.toString());
-//		}
+		//ListIterator<Nodo> it3 = ((MiLista<Nodo>) listaPred).iterator();
+		//for (int i = 0; i < listaPred.getSize(); i++){
+			//A = it3.next();
+			//System.out.println(A.toString());
+		//}
 		
 		tiempoInicio = System.currentTimeMillis();
 		Lista<Nodo> listaSuc = grafo.getSuc(new Nodo("Nodo_0"));
 		totalTiempo = System.currentTimeMillis() - tiempoInicio;
 		System.out.println("El tiempo de demora para getSuc es :" + totalTiempo + " miliseg");
-//		ListIterator<Nodo> it4 = ((MiLista<Nodo>) listaSuc).iterator();
-//		for (int i = 0; i < listaSuc.getSize(); i++){
-//			A = it4.next();
-//			System.out.println(A.toString());
-//		}
+		//ListIterator<Nodo> it4 = ((MiLista<Nodo>) listaSuc).iterator();
+		//for (int i = 0; i < listaSuc.getSize(); i++){
+			//A = it4.next();
+		//	System.out.println(A.toString());
+		//}
 		
 		tiempoInicio = System.currentTimeMillis();
 		Lista<Arco> listaIn = grafo.getIn(new Nodo("Nodo_1"));
 		totalTiempo = System.currentTimeMillis() - tiempoInicio;
 		System.out.println("El tiempo de demora para getIn es :" + totalTiempo + " miliseg");
-//		ListIterator<Arco> it5 = ((MiLista<Arco>) listaIn).iterator();
-//		for (int i = 0; i < listaIn.getSize(); i++){
-//			B = it5.next();
-//			System.out.println(B.toString());
-//		}
+		//ListIterator<Arco> it5 = ((MiLista<Arco>) listaIn).iterator();
+		//for (int i = 0; i < listaIn.getSize(); i++){
+			//B = it5.next();
+			//System.out.println(B.toString());
+		//}
 		
 		tiempoInicio = System.currentTimeMillis();
 		Lista<Arco> listaOut = grafo.getOut(new Nodo("Nodo_0"));
 		totalTiempo = System.currentTimeMillis() - tiempoInicio;
-//		System.out.println("El tiempo de demora para getOut es :" + totalTiempo + " miliseg");
-//		ListIterator<Arco> it6 = ((MiLista<Arco>) listaOut).iterator();
-//		for (int i = 0; i < listaOut.getSize(); i++){
-//			B = it6.next();
-//			System.out.println(B.toString());
-//		}
+		System.out.println("El tiempo de demora para getOut es :" + totalTiempo + " miliseg");
+		//ListIterator<Arco> it6 = ((MiLista<Arco>) listaOut).iterator();
+		//for (int i = 0; i < listaOut.getSize(); i++){
+			//B = it6.next();
+			//System.out.println(B.toString());
+		//}
 		
 		
 		tiempoInicio = System.currentTimeMillis();
@@ -106,8 +106,8 @@ public class Main {
 
 		
 		System.out.println("Arcos: "+grafo.getNumArcos()+" Nodos: "+grafo.getNumNodos()+ " Colisiones: "+grafo.colisiones());
-//		long totalTiempo = System.currentTimeMillis() - tiempoInicio;
-//		System.out.println("El tiempo de demora es :" + totalTiempo + " miliseg");
+		totalTiempo = System.currentTimeMillis() - tiempoInicio;
+		System.out.println("El tiempo de demora es :" + totalTiempo + " miliseg");
 	}
 	
 	
@@ -144,7 +144,7 @@ public class Main {
 			    if ((i!=2) || (j != 3))
 				b2 = d1.add((Arco) a.clone());
 			
-//					System.out.printf("Agregando %s %s\n" , a, b2);
+					System.out.printf("Agregando %s %s\n" , a, b2);
 		    }
 		}
 		System.out.println(p);

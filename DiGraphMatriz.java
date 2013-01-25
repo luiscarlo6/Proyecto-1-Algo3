@@ -12,8 +12,8 @@ public class DiGraphMatriz implements Graph{
 	public DiGraphMatriz () {
 		this.numNodos = 0;
 		this.numArcos = 0;
-		this.anterior = 5;
-		this.actual = 8;
+		this.anterior = 89;
+		this.actual = 144;
 		this.nodos = new Nodo[this.actual];
 		this.arcos = new boolean[this.actual][this.actual];
 	}
@@ -25,12 +25,10 @@ public class DiGraphMatriz implements Graph{
 	@Override
 	public boolean add(Nodo n) {
 
-		if(this.contains(n)){
+		if(this.contains(n) || n==null){
 			return false;
 		}
 		this.Ampliar();
-		//System.out.println(this.nodos.length);
-		//System.out.println(this.arcos.length);
 		this.nodos[this.numNodos] = n;
 		this.numNodos++;
 		return true;
@@ -43,6 +41,11 @@ public class DiGraphMatriz implements Graph{
 	 */
 	@Override
 	public boolean add(Arco a) {
+		
+		if(a==null){
+			return false;
+		}
+		
 		int Temp[]=new int[2];
 		Temp[0] = -1;
 		Temp[1] = -1;
@@ -73,6 +76,10 @@ public class DiGraphMatriz implements Graph{
 	 */
 	@Override
 	public boolean contains(Nodo n) {
+		if(n==null){
+			return false;
+		}
+			
 		int i=0;
 		
 		while(i!=this.numNodos){
@@ -91,6 +98,10 @@ public class DiGraphMatriz implements Graph{
 	 */
 	@Override
 	public boolean contains(Arco a) {
+		
+		if (a==null){
+			return false;
+		}
 
 		int Temp[]=new int[2];
 		Temp[0] = -1;
@@ -141,6 +152,11 @@ public class DiGraphMatriz implements Graph{
 	@Override
 	public boolean remove(Arco a) {
 
+		if (a==null){
+			return false;
+			
+		}	
+		
 		int Temp[]=new int[2];
 		Temp[0] = -1;
 		Temp[1] = -1;
@@ -150,6 +166,7 @@ public class DiGraphMatriz implements Graph{
 		if (Temp[0]>-1 && Temp[1]>-1){
 			
 			if(this.arcos[Temp[0]][Temp[1]]==true){
+			
 				this.arcos[Temp[0]][Temp[1]]=false;
 				this.numArcos--;
 				return true;
@@ -163,9 +180,18 @@ public class DiGraphMatriz implements Graph{
 	 */
 	@Override
 	public Lista<Nodo> getNodos() {
-
-		/* implementar */
-		return null;
+		int i=0;
+		if(this.numNodos==0){
+			return null;
+		}
+		
+		Lista<Nodo> LisNodo=new MiLista<Nodo>();
+		
+		while(i!=this.numNodos){
+			LisNodo.add(this.nodos[i]);
+			i++;
+		}
+		return LisNodo;
 	}
 	
 	/**
@@ -173,9 +199,27 @@ public class DiGraphMatriz implements Graph{
 	 */
 	@Override
 	public Lista<Arco> getArcos() {
-
+		int i=0,j=0,Cont=0;;
+		if(this.numNodos==0){
+			return null;
+		}
+		Lista<Arco> LisArcos=new MiLista<Arco>();
+		
+		i=0;
+		while(i!=this.arcos.length && Cont!=this.numArcos){
+			j=0;
+			while(j!=this.arcos.length && Cont!=this.numArcos){
+				if(this.arcos[i][j]){
+					LisArcos.add(new Arco(this.nodos[i].toString(),this.nodos[j].toString()));
+					Cont++;
+				}
+				j++;
+			}
+			i++;
+		}
+		
 		/* implementar */
-		return null;
+		return LisArcos;
 	}
 
 	/**
@@ -202,8 +246,30 @@ public class DiGraphMatriz implements Graph{
 	@Override
 	public Lista<Nodo> getPred(Nodo n) {
 
-		/* implementar */
-		return null;
+		int i,j;
+		if (n ==null || this.numNodos==0){
+			return null;
+		}
+		
+		int Pos=this.Buscar(n.toString());
+		
+		if (Pos==-1){
+			return null;
+		}
+		
+		Lista<Nodo> LisPredecesores = new MiLista<Nodo>();
+		
+		i=0;
+		while(i!=this.arcos.length){
+			if (this.arcos[i][Pos]){
+				
+				LisPredecesores.add(new Nodo(this.nodos[i].toString()));
+				
+			}
+			i++;
+		}
+		return LisPredecesores;
+		
 	}
 
 	/**
@@ -212,8 +278,29 @@ public class DiGraphMatriz implements Graph{
 	@Override
 	public Lista<Nodo> getSuc(Nodo n) {
 
-		/* implementar */
-		return null;
+		int i,j;
+		if (n ==null || this.numNodos==0){
+			return null;
+		}
+		
+		int Pos=this.Buscar(n.toString());
+		
+		if (Pos==-1){
+			return null;
+		}
+		
+		Lista<Nodo> LisSucesores = new MiLista<Nodo>();
+		
+		i=0;
+		while(i!=this.arcos.length){
+			if (this.arcos[Pos][i]){
+				
+				LisSucesores.add(new Nodo(this.nodos[i].toString()));
+				
+			}
+			i++;
+		}
+		return LisSucesores;
 	}
 
 	/**
@@ -221,9 +308,32 @@ public class DiGraphMatriz implements Graph{
 	 */
 	@Override
 	public Lista<Arco> getIn(Nodo n) {
-
-		/* implementar */
-		return null;
+		int i,j;
+		if (n ==null || this.numNodos==0){
+			return null;
+		}
+		
+		int Pos=this.Buscar(n.toString());
+		
+		if (Pos==-1){
+			return null;
+		}
+		
+		Lista<Arco> LisArco = new MiLista<Arco>();
+		
+		i=0;
+		while(i!=this.arcos.length){
+			if (this.arcos[i][Pos]){
+				
+				LisArco.add(new Arco(this.nodos[i].toString(),this.nodos[Pos].toString()));
+				
+			}
+			i++;
+		}
+		
+		
+		return LisArco;
+		
 	}
 
 	/**
@@ -232,8 +342,29 @@ public class DiGraphMatriz implements Graph{
 	@Override
 	public Lista<Arco> getOut(Nodo n) {
 
-		/* implementar */
-		return null;
+		int i,j;
+		if (n ==null || this.numNodos==0){
+			return null;
+		}
+		
+		int Pos=this.Buscar(n.toString());
+		
+		if (Pos==-1){
+			return null;
+		}
+		
+		Lista<Arco> LisArco = new MiLista<Arco>();
+		
+		i=0;
+		while(i!=this.arcos.length){
+			if (this.arcos[Pos][i]){
+				
+				LisArco.add(new Arco(this.nodos[Pos].toString(),this.nodos[i].toString()));
+				
+			}
+			i++;
+		}
+		return LisArco;
 	}
 
 	/**
