@@ -1,5 +1,5 @@
 
-public class Main {
+public class MainMio {
 
 	/**
 	 * @param args
@@ -7,7 +7,7 @@ public class Main {
 	public static void main(String[] args) {
 		Nodo A;
 		Arco B;
-		int max = 100;
+		int max = 400;
 		long tiempoInicio = System.currentTimeMillis();
 		Graph grafo = llenar(true,true,max);
 		long totalTiempo = System.currentTimeMillis() - tiempoInicio;

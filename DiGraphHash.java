@@ -321,28 +321,15 @@ public class DiGraphHash implements Graph{
         	if (this.nodos.get(i)!=null){
         			
         		MiLista<Arco> listaIn =(MiLista<Arco>) this.arcosIn.get(i);
-        		MiLista<Arco> listaOut = ((MiLista<Arco>) this.arcosOut.get(i));
         		ListIterator<Arco> it = listaIn.iterator();
         		k = 0;
         		
         		while (k!=listaIn.getSize()) {
             		a = it.next();
-            		if (!lista.contains(a)){
-            			lista.add(a);
-            		}
+        			lista.add(a);
             		k++;
             	}
-        		
-        		
-        		it = listaOut.iterator();
-        		k = 0;
-        		while (k!=listaOut.getSize()) {
-            		a = it.next();
-            		if (!lista.contains(a)){
-            			lista.add(a);
-            		}
-            		k++;
-            	}
+
         	}
         	i++;
         	
