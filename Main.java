@@ -7,12 +7,13 @@ public class Main {
 	public static void main(String[] args) {
 		Nodo A;
 		Arco B;
-		int max = 4,i=0;
+		int max = 4;
 		long tiempoInicio = System.currentTimeMillis();
 		Graph grafo = llenar(false,true,max);
 		long totalTiempo = System.currentTimeMillis() - tiempoInicio;
 		System.out.println("El tiempo de demora para llenar es :" + totalTiempo + " miliseg");
-		
+/*		
+		int i=0;
 		DiGraphMatriz Aux=null,Aux2=null;
 		Object clon=null;
 		
@@ -25,7 +26,21 @@ public class Main {
 			
 			int j=0;
 			while(j!=max){
-				Aux.add(new Arco("Nodo_"+i,"Nodo_"+j));
+				Aux.remove(new Arco("Nodo_"+i,"Nodo_"+j));
+				j++;
+			}
+			
+			i++;
+		}
+		System.out.println();
+		System.out.println(Aux.getNumArcos());
+		System.out.println();
+			i=0;
+		while(i!=max){
+			
+			int j=0;
+			while(j!=max){
+				Aux2.add(new Arco("Nodo_"+i,"Nodo_"+j));
 				j++;
 			}
 			
@@ -36,92 +51,96 @@ public class Main {
 		System.out.println("\n\n");
 		Aux2.ImprimirMatriz();
 		
+		System.out.println("\n\n");
+		System.out.println(Aux.getNumArcos());
+		System.out.println(Aux2.getNumArcos());
+		
 		
 
-//		for (int i = 0; i < max; i++) {
-//		    Nodo n = new Nodo("Nodo_"+i);
-//		    grafo.remove(n);
-//		    System.out.println("contains nodo:"+n.toString()+" "+grafo.contains(n));
-//		}
+		for (int i = 0; i < max; i++) {
+		    Nodo n = new Nodo("Nodo_"+i);
+		    grafo.remove(n);
+		    System.out.println("contains nodo:"+n.toString()+" "+grafo.contains(n));
+		}
 		
-//		for (int i = 0; i < max; i += 20) {
-//		    Nodo n1 = new Nodo("Nodo_"+i);
-//
-//		    for (int j = 1; j < max; j += 20) {
-//
-//		    Nodo n2 = new Nodo("Nodo_"+j);
-//			Arco a = new Arco(n1.toString(), n2.toString());
-//			grafo.remove(a);
-//			System.out.println("contains arco:"+a.toString()+" "+grafo.contains(a));
-//		    }
-//		}
-/*		
+		for (int i = 0; i < max; i += 20) {
+		    Nodo n1 = new Nodo("Nodo_"+i);
+
+		    for (int j = 1; j < max; j += 20) {
+
+		    Nodo n2 = new Nodo("Nodo_"+j);
+			Arco a = new Arco(n1.toString(), n2.toString());
+			grafo.remove(a);
+			System.out.println("contains arco:"+a.toString()+" "+grafo.contains(a));
+		    }
+		}*/
+	
 		tiempoInicio = System.currentTimeMillis();
 		Lista<Nodo> listaNodo = grafo.getNodos();
 		totalTiempo = System.currentTimeMillis() - tiempoInicio;
 		System.out.println("El tiempo de demora para getNodos es :" + totalTiempo + " miliseg");
-//		ListIterator<Nodo> it = ((MiLista<Nodo>) listaNodo).iterator();
-//		for (int i = 0; i < max; i++){
-//			A = it.next();
-//			System.out.println(A.toString());
-//		}
+		ListIterator<Nodo> it = ((MiLista<Nodo>) listaNodo).iterator();
+		for (int i = 0; i < max; i++){
+			A = it.next();
+			System.out.println(A.toString());
+		}
 		
 		tiempoInicio = System.currentTimeMillis();
 		Lista<Arco> listaArco = grafo.getArcos();
 		totalTiempo = System.currentTimeMillis() - tiempoInicio;
 		System.out.println("El tiempo de demora para getArcos es :" + totalTiempo + " miliseg");
-		//ListIterator<Arco> it2 = ((MiLista<Arco>) listaArco).iterator();
-		//for (int i = 0; i < listaArco.getSize(); i++){
-			//B = it2.next();
-			//System.out.println(B.toString());
-		//}
+		ListIterator<Arco> it2 = ((MiLista<Arco>) listaArco).iterator();
+		for (int i = 0; i < listaArco.getSize(); i++){
+			B = it2.next();
+			System.out.println(B.toString());
+		}
 		
 		tiempoInicio = System.currentTimeMillis();
 		Lista<Nodo> listaPred = grafo.getPred(new Nodo("Nodo_1"));
 		totalTiempo = System.currentTimeMillis() - tiempoInicio;
 		System.out.println("El tiempo de demora para getPred es :" + totalTiempo + " miliseg");
-		//ListIterator<Nodo> it3 = ((MiLista<Nodo>) listaPred).iterator();
-		//for (int i = 0; i < listaPred.getSize(); i++){
-			//A = it3.next();
-			//System.out.println(A.toString());
-		//}
+		ListIterator<Nodo> it3 = ((MiLista<Nodo>) listaPred).iterator();
+		for (int i = 0; i < listaPred.getSize(); i++){
+			A = it3.next();
+			System.out.println(A.toString());
+		}
 		
 		tiempoInicio = System.currentTimeMillis();
 		Lista<Nodo> listaSuc = grafo.getSuc(new Nodo("Nodo_0"));
 		totalTiempo = System.currentTimeMillis() - tiempoInicio;
 		System.out.println("El tiempo de demora para getSuc es :" + totalTiempo + " miliseg");
-		//ListIterator<Nodo> it4 = ((MiLista<Nodo>) listaSuc).iterator();
-		//for (int i = 0; i < listaSuc.getSize(); i++){
-			//A = it4.next();
-		//	System.out.println(A.toString());
-		//}
+		ListIterator<Nodo> it4 = ((MiLista<Nodo>) listaSuc).iterator();
+		for (int i = 0; i < listaSuc.getSize(); i++){
+			A = it4.next();
+			System.out.println(A.toString());
+		}
 		
 		tiempoInicio = System.currentTimeMillis();
 		Lista<Arco> listaIn = grafo.getIn(new Nodo("Nodo_1"));
 		totalTiempo = System.currentTimeMillis() - tiempoInicio;
 		System.out.println("El tiempo de demora para getIn es :" + totalTiempo + " miliseg");
-		//ListIterator<Arco> it5 = ((MiLista<Arco>) listaIn).iterator();
-		//for (int i = 0; i < listaIn.getSize(); i++){
-			//B = it5.next();
-			//System.out.println(B.toString());
-		//}
+		ListIterator<Arco> it5 = ((MiLista<Arco>) listaIn).iterator();
+		for (int i = 0; i < listaIn.getSize(); i++){
+			B = it5.next();
+			System.out.println(B.toString());
+		}
 		
 		tiempoInicio = System.currentTimeMillis();
 		Lista<Arco> listaOut = grafo.getOut(new Nodo("Nodo_0"));
 		totalTiempo = System.currentTimeMillis() - tiempoInicio;
 		System.out.println("El tiempo de demora para getOut es :" + totalTiempo + " miliseg");
-		//ListIterator<Arco> it6 = ((MiLista<Arco>) listaOut).iterator();
-		//for (int i = 0; i < listaOut.getSize(); i++){
-			//B = it6.next();
-			//System.out.println(B.toString());
-		//}
+		ListIterator<Arco> it6 = ((MiLista<Arco>) listaOut).iterator();
+		for (int i = 0; i < listaOut.getSize(); i++){
+			B = it6.next();
+			System.out.println(B.toString());
+		}
 		
 		
 		tiempoInicio = System.currentTimeMillis();
 		String grafoS = grafo.toString();
 		totalTiempo = System.currentTimeMillis() - tiempoInicio;
 		System.out.println("El tiempo de demora para toString es :" + totalTiempo + " miliseg");
-//		System.out.println(grafo.toString());
+		System.out.println(grafo.toString());
 		
 		
 		tiempoInicio = System.currentTimeMillis();
@@ -132,7 +151,7 @@ public class Main {
 		
 		System.out.println("Arcos: "+grafo.getNumArcos()+" Nodos: "+grafo.getNumNodos()+ " Colisiones: "+grafo.colisiones());
 		totalTiempo = System.currentTimeMillis() - tiempoInicio;
-		System.out.println("El tiempo de demora es :" + totalTiempo + " miliseg");*/
+		System.out.println("El tiempo de demora es :" + totalTiempo + " miliseg");
 	}
 	
 	

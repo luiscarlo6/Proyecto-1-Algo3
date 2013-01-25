@@ -100,14 +100,7 @@ public class DiGraphMatriz implements Graph{
 			i++;
 		}
 		nuevaMatriz.numArcos=cont;
-			
-		
-		
-		
 		return nuevaMatriz;
-		
-
-		
 	}
 
 	/**
@@ -150,9 +143,9 @@ public class DiGraphMatriz implements Graph{
 		this.Buscar(Temp, a.getSrc(), a.getDst());//busco las posisiones si existen
 		
 		if (Temp[0]>-1 && Temp[1]>-1){
-			this.arcos[Temp[0]][Temp[1]]=true;
-			return true;
-			
+		  if(this.arcos[Temp[0]][Temp[1]]){
+				return true;
+		  }
 		}
 		return false;
 	}
@@ -194,7 +187,6 @@ public class DiGraphMatriz implements Graph{
 
 		if (a==null){
 			return false;
-			
 		}	
 		
 		int Temp[]=new int[2];
@@ -205,7 +197,7 @@ public class DiGraphMatriz implements Graph{
 		
 		if (Temp[0]>-1 && Temp[1]>-1){
 			
-			if(this.arcos[Temp[0]][Temp[1]]==true){
+			if(this.arcos[Temp[0]][Temp[1]]){
 			
 				this.arcos[Temp[0]][Temp[1]]=false;
 				this.numArcos--;
@@ -413,8 +405,27 @@ public class DiGraphMatriz implements Graph{
 	@Override
 	public String toString() {
 
-		/* implementar */
-		return "";
+		String ret = numNodos + ":" + numArcos ;
+
+		ListIterator<Nodo> nodos =((MiLista<Nodo>) getNodos()).iterator();
+
+		int i = 0;
+		while (i!=numNodos) {
+		    Nodo n = nodos.next();
+		    ret += "\n" + n.toString();
+		    i++;
+		}       
+
+		ListIterator<Arco> arcos = ((MiLista<Arco>) getArcos()).iterator();
+
+		i = 0;
+		while (arcos.hasNext()) {
+		    Arco a = arcos.next();
+		    ret += "\n" + a.toString();
+		    i++;
+		}       
+
+        return ret;
 	}
 
 
