@@ -71,24 +71,6 @@ public class Nodo {
 	 */
 	@Override
 	public int hashCode() {
-
-		int hash=13;
-    	int len = this.id.length();
-    	for (int i = 0; i < len; i++) {
-    		hash = 37 * hash + this.id.charAt(i);
-		}
-		 
-//		hash = Math.abs(this.id.hashCode());
-
-		return (hash);
-		
-//		int radix = 131; /*Que es equivalente a 2^7*/
-//		int hash=0;/*Valor del string id*/
-//
-//		/*como el string no es mas que un polinomio se evalua mediante el metodo de HORNER*/
-//		for (int i = this.id.length()-1; i >= 0; i--){
-//            hash = this.id.charAt(i) + (radix*hash);
-//		}
-//		return Math.abs(hash);
+		return this.id.hashCode();
 	}
 } /*Fin de nodo*/

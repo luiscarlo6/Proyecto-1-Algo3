@@ -7,7 +7,7 @@ public class MainMio {
 	public static void main(String[] args) {
 		Nodo A;
 		Arco B;
-		int max = 400;
+		int max = 15000;
 		long tiempoInicio = System.currentTimeMillis();
 		Graph grafo = llenar(true,true,max);
 		long totalTiempo = System.currentTimeMillis() - tiempoInicio;
@@ -112,13 +112,11 @@ public class MainMio {
 		
 		
 		
+
+
 		
 		
-		
-		
-		
-		
-		
+		/*
 		
 		tiempoInicio = System.currentTimeMillis();
 		grafo = llenar(false,true,max);
@@ -204,12 +202,12 @@ public class MainMio {
 //		}
 		
 		
-		tiempoInicio = System.currentTimeMillis();
-		grafoS = grafo.toString();
-		totalTiempo = System.currentTimeMillis() - tiempoInicio;
-		System.out.println("El tiempo de demora para toString es :" + totalTiempo + " miliseg");
-//		System.out.println(grafo.toString());
-		
+//		tiempoInicio = System.currentTimeMillis();
+//		grafoS = grafo.toString();
+//		totalTiempo = System.currentTimeMillis() - tiempoInicio;
+//		System.out.println("El tiempo de demora para toString es :" + totalTiempo + " miliseg");
+////		System.out.println(grafo.toString());
+//		
 		
 		tiempoInicio = System.currentTimeMillis();
 		nuevoG = (Graph) grafo.clone();
@@ -217,9 +215,10 @@ public class MainMio {
 		System.out.println("El tiempo de demora para clone es :" + totalTiempo + " miliseg");
 
 		
-		System.out.println("Arcos: "+grafo.getNumArcos()+" Nodos: "+grafo.getNumNodos()+ " Colisiones: "+grafo.colisiones()+ " "+ (grafo.colisiones()*1.0 / grafo.getNumNodos())*100+"%");
+		System.out.println("Arcos: "+grafo.getNumArcos()+" Nodos: "+grafo.getNumNodos()+ 
+			" Colisiones: "+grafo.colisiones()+ " "+ (grafo.colisiones()*1.0 / grafo.getNumNodos())*100+"%");
 //		long totalTiempo = System.currentTimeMillis() - tiempoInicio;
-//		System.out.println("El tiempo de demora es :" + totalTiempo + " miliseg");
+//		System.out.println("El tiempo de demora es :" + totalTiempo + " miliseg");*/
 	}
 	
 	
@@ -238,10 +237,10 @@ public class MainMio {
 		    
 		}
 		int p=0;
-		for (int i = 0; i < maxN; i += 2) {
+		for (int i = 0; i < maxN; i += 80) {
 		    Nodo n1 = new Nodo("Nodo_"+i);
 
-		    for (int j = 1; j < maxN; j += 2) {
+		    for (int j = 1; j < maxN; j += 80) {
 			Nodo n2 = new Nodo("Nodo_"+j);
 			Arco a = new Arco(n1.toString(), n2.toString());
 			p++;

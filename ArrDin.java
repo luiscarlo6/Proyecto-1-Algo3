@@ -78,10 +78,7 @@ public class ArrDin<E>{
 		this.resize();
 		
 		System.arraycopy(viejoArr, 0, this.arr, 0, viejoArr.length);
-		
-//		for (int i= 0; i!=this.arr.length;i++){
-//			this.Arr[i] = viejoArr[i];
-//		}
+
 	}
 	
 	/**
@@ -89,9 +86,11 @@ public class ArrDin<E>{
 	 * sucesion de fibonacci, el arreglo queda vacio
 	 **/
 	public void resize(){
+		//calculo de fibonacci
 		int nuevoTam = this.actual+this.anterior;
 		this.anterior = this.actual;
 		this.actual = nuevoTam;
+		
 		Object nuevoArr[] = new Object[nuevoTam];
 		this.arr = nuevoArr;
 

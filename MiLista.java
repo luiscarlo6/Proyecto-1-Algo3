@@ -4,7 +4,7 @@
  * lista contiene elementos de tipo E.
  */
 public class MiLista<E> implements Lista<E>{
-    /*
+    /**
      * Modelo de representacion: lista doblemente enlazada 
      * con un centinela.
      * La primera "caja" esta vacia.
@@ -13,7 +13,7 @@ public class MiLista<E> implements Lista<E>{
 	private Caja<E> centinela = null;
 	
 	
-    /*
+    /**
      * Constructor
      */
     public MiLista() {
@@ -121,8 +121,6 @@ public class MiLista<E> implements Lista<E>{
     	return sent;
     }
     
-   
-    
     /**
      *  Retorna el primer de la lista.
      */
@@ -209,15 +207,18 @@ public class MiLista<E> implements Lista<E>{
     /**
      * Devuelve un iterador sobre la lista.
      */
-
     @SuppressWarnings({ "unchecked", "rawtypes" })
 	public ListIterator<E> iterator() {
     	return new LisIter(this);
     }
     
-         
     
-    
+    /**
+     * Clase privada para el uso de la lista
+     * Implementa una cada con un apuntador 
+     * una siguiente caja, y a una anterior.
+     * la caja guarda un elemento de tipo E     * 
+     */
     @SuppressWarnings("hiding")
 	private final class Caja<E> {
     	
@@ -225,12 +226,17 @@ public class MiLista<E> implements Lista<E>{
     	private Caja<E> anterior = null;
     	private E elemento = null;
     	
+    	/**
+    	 * Constructor, crea una caja que contiene al elemento e
+    	 */
     	public Caja(E e){
     		this.elemento = e;
     		this.siguiente = null;
     		this.anterior=null;		
     	}
-    	
+    	/**
+    	 * Cambia el elemento de la caja siguiente por e
+    	 */
     	public boolean cambiarSiguiente(E e){
     		Caja<E> sig = new Caja<E>(e);
     		if (this!=null){
@@ -240,15 +246,21 @@ public class MiLista<E> implements Lista<E>{
     		}
     		return false;
     	}
-    	
+    	/**
+    	 * Retorna la siguiente caja a donde apunta
+    	 */
     	public Caja<E> cajaSig(){
     		return this.siguiente;
     	}
-    	
+    	/**
+    	 * retorna la caja anterior a donde apunta
+    	 */
     	public Caja<E> cajaAnt(){
     		return this.anterior;
     	}
-    	
+    	/**
+    	 * hace que la caja e sea el nuevo siguiente de la caja acual
+    	 */
     	public boolean cambiarSiguiente(Caja<E> e){
     		if (this!=null){
     			this.siguiente = e;
@@ -257,7 +269,9 @@ public class MiLista<E> implements Lista<E>{
     		}
     		return false;
     	}
-    	
+    	/**
+    	 * cambia el elemento de la caja anterior por e
+    	 */
     	public boolean cambiarAnterior(E e){
     		Caja<E> ant = new Caja<E>(e);
     		if (this!=null){
@@ -267,7 +281,9 @@ public class MiLista<E> implements Lista<E>{
     		}
     		return false;
     	}
-    	
+    	/**
+    	 * hace que la caja e sea el nuevo anterior de la caja actual
+    	 */
     	public boolean cambiarAnterior(Caja<E> e){
     		if (this!=null){
     			this.anterior = e;
@@ -276,24 +292,34 @@ public class MiLista<E> implements Lista<E>{
     		}
     		return false;
     	}
-    	
+    	/**
+    	 * retorna el elemento de la caja
+    	 */
     	public E elemento(){
     		return this.elemento;
     	}
-    	
+    	/**
+    	 * retorna el elemento de la caja siguiente
+    	 */
     	public E siguiente(){
     		return this.siguiente.elemento;
     	}
-    	
+    	/**
+    	 * retorna el elemento de la caja anterior
+    	 */
     	public E anterior(){
     		return this.anterior.elemento;
     	}
-    	
+    	/**
+    	 * muetra una reperensation en String del contenido de la caja
+    	 */
     	@Override
 		public String toString() {
     		return this.elemento.toString();
     	}
-    	 
+    	 /**
+    	  * dice si dos cajas son iguales
+    	  */
     	@Override
 		@SuppressWarnings("unchecked")
 		public boolean equals(Object c) {
@@ -304,13 +330,19 @@ public class MiLista<E> implements Lista<E>{
             return (c instanceof Caja) && this.elemento.equals(d.elemento);
     	}
     }
-    
+    /**
+     * clase privada para el uso de la lista
+     * implementacion de un iterador para la lista
+     */
     @SuppressWarnings("hiding")
 	private final class LisIter<E> implements ListIterator<E> {
 		private MiLista<E> ListaAux=null;
 	   	private Caja<E> Actual=null;
 	   	private int cont;
    	 
+	   	/**
+	   	 * constructor, crea un iterador para la lista lis
+	   	 */
 	   	@SuppressWarnings("unchecked")
 		private LisIter(MiLista<E> Lis){
 	   		this.ListaAux = Lis;
@@ -319,14 +351,24 @@ public class MiLista<E> implements Lista<E>{
 	   	}
 
 
-            
+	   	/**
+	     * Comprueba que exista un proximo elemento.
+	     */
 	   	@Override
 	   	public boolean hasNext() {
 	   		return(this.Actual.siguiente()!=null);
 	   	}
-
-	   	@SuppressWarnings("unchecked")
+	   	/**
+	     * Comprueba que exista un proximo elemento.
+	     */
 		@Override
+		public boolean hasPrev(){
+	   		return (this.Actual.anterior()!=null);
+	   	}
+		 /**
+	     * Devuelve el elemento asociado y avanza el iterador.
+	     */
+	   	@Override
 	   	public E next() {
 	   		E Temp;
                
@@ -335,16 +377,10 @@ public class MiLista<E> implements Lista<E>{
 	   		this.cont++;
 	   		return Temp;
 	   	}
-
+	    /**
+	     * Devuelve el elemento asociado y retrocede el iterador.
+	     */
 	   	@Override
-        public void unlink() {
-	   		E Temp;
-	   		Temp = this.Actual.anterior();
-	   		this.ListaAux.remove(Temp);
-	   	}
-           
-	   	@Override
-		@SuppressWarnings("unchecked")
 		public E prev(){
 	   		E Temp;
                
@@ -353,11 +389,19 @@ public class MiLista<E> implements Lista<E>{
    	   		this.cont--;
    	   		return Temp;
 	   	}
-           
+	    /**
+	     * Remueve de la lista el ultimo elemento retornado
+	     */
 	   	@Override
-		public boolean hasPrev(){
-	   		return (this.Actual.anterior()!=null);
+        public void unlink() {
+	   		E Temp;
+	   		Temp = this.Actual.anterior();
+	   		this.ListaAux.remove(Temp);
 	   	}
+           
+	   	
+           
+	   
      
      }//Fin LisIter
     

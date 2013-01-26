@@ -12,8 +12,8 @@ public class DiGraphMatriz implements Graph{
 	public DiGraphMatriz () {
 		this.numNodos = 0;
 		this.numArcos = 0;
-		this.anterior = 3;
-		this.actual = 5;
+		this.anterior = 89;
+		this.actual = 144;
 		this.nodos = new Nodo[this.actual];
 		this.arcos = new boolean[this.actual][this.actual];
 	}
@@ -139,8 +139,8 @@ public class DiGraphMatriz implements Graph{
 		int Temp[]=new int[2];
 		Temp[0] = -1;
 		Temp[1] = -1;
-		
-		this.Buscar(Temp, a.getSrc(), a.getDst());//busco las posisiones si existen
+		//busco las posiciones si existen
+		this.Buscar(Temp, a.getSrc(), a.getDst());
 		
 		if (Temp[0]>-1 && Temp[1]>-1){
 		  if(this.arcos[Temp[0]][Temp[1]]){
@@ -220,7 +220,7 @@ public class DiGraphMatriz implements Graph{
 		Lista<Nodo> LisNodo=new MiLista<Nodo>();
 		
 		while(i!=this.numNodos){
-			LisNodo.add(this.nodos[i]);
+			LisNodo.add((Nodo)this.nodos[i].clone());
 			i++;
 		}
 		return LisNodo;
@@ -242,7 +242,8 @@ public class DiGraphMatriz implements Graph{
 			j=0;
 			while(j!=this.arcos.length && Cont!=this.numArcos){
 				if(this.arcos[i][j]){
-					LisArcos.add(new Arco(this.nodos[i].toString(),this.nodos[j].toString()));
+					LisArcos.add(new Arco(this.nodos[i].toString(),
+										  this.nodos[j].toString()));
 					Cont++;
 				}
 				j++;
@@ -278,7 +279,7 @@ public class DiGraphMatriz implements Graph{
 	@Override
 	public Lista<Nodo> getPred(Nodo n) {
 
-		int i,j;
+		int i;
 		if (n ==null || this.numNodos==0){
 			return null;
 		}
@@ -310,7 +311,7 @@ public class DiGraphMatriz implements Graph{
 	@Override
 	public Lista<Nodo> getSuc(Nodo n) {
 
-		int i,j;
+		int i;
 		if (n ==null || this.numNodos==0){
 			return null;
 		}
@@ -340,7 +341,7 @@ public class DiGraphMatriz implements Graph{
 	 */
 	@Override
 	public Lista<Arco> getIn(Nodo n) {
-		int i,j;
+		int i;
 		if (n ==null || this.numNodos==0){
 			return null;
 		}
@@ -357,7 +358,8 @@ public class DiGraphMatriz implements Graph{
 		while(i!=this.arcos.length){
 			if (this.arcos[i][Pos]){
 				
-				LisArco.add(new Arco(this.nodos[i].toString(),this.nodos[Pos].toString()));
+				LisArco.add(new Arco(this.nodos[i].toString(),
+						 			 this.nodos[Pos].toString()));
 				
 			}
 			i++;
@@ -374,7 +376,7 @@ public class DiGraphMatriz implements Graph{
 	@Override
 	public Lista<Arco> getOut(Nodo n) {
 
-		int i,j;
+		int i;
 		if (n ==null || this.numNodos==0){
 			return null;
 		}
@@ -391,7 +393,8 @@ public class DiGraphMatriz implements Graph{
 		while(i!=this.arcos.length){
 			if (this.arcos[Pos][i]){
 				
-				LisArco.add(new Arco(this.nodos[Pos].toString(),this.nodos[i].toString()));
+				LisArco.add(new Arco(this.nodos[Pos].toString(),
+									 this.nodos[i].toString()));
 				
 			}
 			i++;
@@ -431,13 +434,12 @@ public class DiGraphMatriz implements Graph{
 
 	@Override
 	public int colisiones() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 	
-	/********************************************************************************************
-	 * ************************************************************************************
-	 * ****************************************************************************************/
+	/********************************************************************
+	 ********************************************************************
+	 ********************************************************************/
 	
 	
 	
@@ -445,7 +447,7 @@ public class DiGraphMatriz implements Graph{
 	
 	
 	/**
-	 * Redimenciona el arreglo y la matriz cuando numNodos >= nodos.length
+	 * Redimensiona el arreglo y la matriz cuando numNodos >= nodos.length
 	 */
 	
 	private final void Ampliar(){
@@ -467,7 +469,8 @@ public class DiGraphMatriz implements Graph{
 				ArcosNuevos = new boolean[this.actual][this.actual];
 				
 				//Se copia el arreglo
-				System.arraycopy(this.nodos, 0, NodoNuevo, 0, this.nodos.length);
+				System.arraycopy(this.nodos, 0, NodoNuevo, 0,
+								 this.nodos.length);
 				
 				//System.out.println();
 				//System.out.println(this.nodos.length);
@@ -475,7 +478,8 @@ public class DiGraphMatriz implements Graph{
 				for (int i = 0; i != this.nodos.length; i++) {
 					//System.out.println("Entreeee"+i);
 					//int[] member = new int[this.actual];
-					System.arraycopy(this.arcos[i], 0, ArcosNuevos[i], 0, this.nodos.length);
+					System.arraycopy(this.arcos[i], 0, ArcosNuevos[i],
+									 0, this.nodos.length);
 				}
 				
 				this.nodos = NodoNuevo;
@@ -513,7 +517,6 @@ public class DiGraphMatriz implements Graph{
 			System.gc();
 			Nodo NodoNuevo[];
 			boolean ArcosNuevos[][];
-			int Temp;
 			
 			NodoNuevo = new Nodo[this.actual];
 			ArcosNuevos = new boolean[this.actual][this.actual];
@@ -579,9 +582,9 @@ private final int Buscar(String N1){
 		return Pos;
 	}
 	
-/*******************************************************************************************************
- * ****************************************************************************************************
- * ****************************************************************************************************/
+/***********************************************************************
+ * *********************************************************************
+ * *********************************************************************/
 
 
 
