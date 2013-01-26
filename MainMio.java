@@ -9,7 +9,7 @@ public class MainMio {
 		Arco B;
 		int max = 10000;
 		long tiempoInicio = System.currentTimeMillis();
-		Graph grafo = llenar(false,true,max);
+		Graph grafo = llenar(true,true,max);
 		long totalTiempo = System.currentTimeMillis() - tiempoInicio;
 		System.out.println("El tiempo de demora para llenar es :" + totalTiempo + " miliseg");
 

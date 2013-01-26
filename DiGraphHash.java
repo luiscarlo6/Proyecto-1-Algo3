@@ -425,8 +425,9 @@ public class DiGraphHash implements Graph{
 			ListIterator<Arco> it = listaOut.iterator();
     		int k = 0;
     		//itero para recorrer la lista
+    		
     		while (k!=listaOut.getSize()) {
-    			Arco a = (Arco) it.next();
+    			Arco a = it.next();
         		Nodo dst = new Nodo(a.getDst());
         		//si el nodo fuente es el mismo que el nodo n
         		if(a.getSrc().equalsIgnoreCase(n.toString())){
@@ -565,7 +566,7 @@ public class DiGraphHash implements Graph{
 	}
 	/**
 	 * Devuelve la posicion de n en un arreglo
-	 * dependiendo del tamaño del mismo
+	 * dependiendo del tamanio del mismo
 	 */
 	private int pos(Nodo n){
 		if (n==null){
