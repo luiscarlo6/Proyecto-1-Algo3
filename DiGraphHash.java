@@ -124,8 +124,7 @@ public class DiGraphHash implements Graph{
 		    Arco a = arcos.next();
 		    nuevo.add((Arco)a.clone());
 		    i++;
-		}       
-
+		}       		
 		return nuevo;
 	}
 
@@ -519,28 +518,49 @@ public class DiGraphHash implements Graph{
 	/**
 	 * Devuelve una representacion en String del grafo.
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public String toString() {
-		String ret = numNodos + ":" + numArcos ;
-
-		ListIterator<Nodo> nodos =((MiLista<Nodo>) getNodos()).iterator();
-
+		String ret ="NumNodos:"+ this.numNodos + ":" +"NumArcos:"+ this.numArcos ;
+				
 		int i = 0;
-		while (i!=numNodos) {
-		    Nodo n = nodos.next();
-		    ret += "\n" + n.toString();
-		    i++;
-		}       
+		while(i!=this.nodos.tam()){
+			//Obtengo la lista de nodos asociada a la pos de cada iteracion
+			Lista<Nodo> nodos =(MiLista<Nodo>) this.nodos.get(i);
+			
+			//si la lista existe
+			if (nodos!=null){
+				//Obtengo su iterador
+				ListIterator<Nodo> it = ((MiLista<Nodo>) nodos).iterator();				
+				int j = 0;
+				while (j!=nodos.getSize()){
+					//agrego los nodos a la nueva lista en cada iteracion
+					ret = ret + "\n"+it.next().toString();
+					j++;
+				}
+			}
+			i++;
+		}
 
-		ListIterator<Arco> arcos = ((MiLista<Arco>) getArcos()).iterator();
 
-		i = 0;
-		while (arcos.hasNext()) {
-		    Arco a = arcos.next();
-		    ret += "\n" + a.toString();
-		    i++;
-		}       
+        i = 0;
+        int k = 0;
+        while (i!=this.nodos.tam()){
+        	//itero en cada pos, y si existe la lista, agrego todos sus arcos 
+        	if (this.nodos.get(i)!=null){
+    			//obtengo la lista de arcos
+        		//Solo obtengo la lsita In para evitar arcos repetidos
+        		MiLista<Arco> listaIn =(MiLista<Arco>) this.arcosIn.get(i);
+        		ListIterator<Arco> it = listaIn.iterator();
+        		k = 0;
+        		while (k!=listaIn.getSize()) {
+            		ret = ret + "\n"+it.next().toString();
+            		k++;
+            	}
 
+        	}
+        	i++;
+        }
         return ret;
 	}
 	/**

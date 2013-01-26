@@ -220,7 +220,7 @@ public class MiLista<E> implements Lista<E>{
      * la caja guarda un elemento de tipo E     * 
      */
     @SuppressWarnings("hiding")
-	private final class Caja<E> {
+	protected final class Caja<E> {
     	
     	private Caja<E> siguiente = null;
     	private Caja<E> anterior = null;

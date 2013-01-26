@@ -7,9 +7,9 @@ public class MainMio {
 	public static void main(String[] args) {
 		Nodo A;
 		Arco B;
-		int max = 15000;
+		int max = 10000;
 		long tiempoInicio = System.currentTimeMillis();
-		Graph grafo = llenar(true,true,max);
+		Graph grafo = llenar(false,true,max);
 		long totalTiempo = System.currentTimeMillis() - tiempoInicio;
 		System.out.println("El tiempo de demora para llenar es :" + totalTiempo + " miliseg");
 
@@ -92,11 +92,11 @@ public class MainMio {
 //		}
 		
 		
-		tiempoInicio = System.currentTimeMillis();
-		String grafoS = grafo.toString();
-		totalTiempo = System.currentTimeMillis() - tiempoInicio;
-		System.out.println("El tiempo de demora para toString es :" + totalTiempo + " miliseg");
-//		System.out.println(grafo.toString());
+//		tiempoInicio = System.currentTimeMillis();
+//		String grafoS = grafo.toString();
+//		totalTiempo = System.currentTimeMillis() - tiempoInicio;
+//		System.out.println("El tiempo de demora para toString es :" + totalTiempo + " miliseg");
+//		System.out.println(grafoS);
 		
 		
 		tiempoInicio = System.currentTimeMillis();
@@ -110,13 +110,10 @@ public class MainMio {
 //		System.out.println("El tiempo de demora es :" + totalTiempo + " miliseg");
 		
 		
-		
-		
-
-
-		
-		
+	
 		/*
+		
+
 		
 		tiempoInicio = System.currentTimeMillis();
 		grafo = llenar(false,true,max);
@@ -237,10 +234,11 @@ public class MainMio {
 		    
 		}
 		int p=0;
-		for (int i = 0; i < maxN; i += 80) {
+		int factor = 50;
+		for (int i = 0; i < maxN; i += factor) {
 		    Nodo n1 = new Nodo("Nodo_"+i);
 
-		    for (int j = 1; j < maxN; j += 80) {
+		    for (int j = 1; j < maxN; j += factor) {
 			Nodo n2 = new Nodo("Nodo_"+j);
 			Arco a = new Arco(n1.toString(), n2.toString());
 			p++;
