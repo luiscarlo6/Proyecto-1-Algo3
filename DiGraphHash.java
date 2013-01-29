@@ -1,6 +1,11 @@
 /**
  * Clase que implementa la interfaz Graph para un 
  * grafo dirigido con tablas de hash.
+ * Autores :
+ * Luiscarlo Rivera, 09-11020
+ * Jose Prado, 09-11006
+ * 
+ * Proyecto 1
  */
 public class DiGraphHash implements Graph{
 	

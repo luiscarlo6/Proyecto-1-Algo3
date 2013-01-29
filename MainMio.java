@@ -7,7 +7,7 @@ public class MainMio {
 	public static void main(String[] args) {
 		Nodo A;
 		Arco B;
-		int max = 10000;
+		int max = 15000;
 		long tiempoInicio = System.currentTimeMillis();
 		Graph grafo = llenar(true,true,max);
 		long totalTiempo = System.currentTimeMillis() - tiempoInicio;
@@ -99,10 +99,10 @@ public class MainMio {
 //		System.out.println(grafoS);
 		
 		
-		tiempoInicio = System.currentTimeMillis();
-		Graph nuevoG = (Graph) grafo.clone();
-		totalTiempo = System.currentTimeMillis() - tiempoInicio;
-		System.out.println("El tiempo de demora para clone es :" + totalTiempo + " miliseg");
+//		tiempoInicio = System.currentTimeMillis();
+//		Graph nuevoG = (Graph) grafo.clone();
+//		totalTiempo = System.currentTimeMillis() - tiempoInicio;
+//		System.out.println("El tiempo de demora para clone es :" + totalTiempo + " miliseg");
 
 		
 		System.out.println("Arcos: "+grafo.getNumArcos()+" Nodos: "+grafo.getNumNodos()+ " Colisiones: "+grafo.colisiones()+ " "+ (grafo.colisiones()*1.0 / grafo.getNumNodos())*100+"%");
@@ -234,7 +234,7 @@ public class MainMio {
 		    
 		}
 		int p=0;
-		int factor = 50;
+		int factor = 10;
 		for (int i = 0; i < maxN; i += factor) {
 		    Nodo n1 = new Nodo("Nodo_"+i);
 

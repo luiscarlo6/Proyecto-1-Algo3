@@ -1,5 +1,9 @@
 /**
  * Clase que almacena la informacion de las aristas en el grafo.
+ * Luiscarlo Rivera, 09-11020
+ * Jose Prado, 09-11006
+ * 
+ * Proyecto 1
  */
 public class Arco {
 

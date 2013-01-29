@@ -1,8 +1,11 @@
 /**
-  * Clase que implementa la interfaz Graph para un 
-  * grafo dirigido de matriz de adyacencia.
-  *
-  */
+ * Clase que implementa la interfaz Graph para un 
+ * grafo dirigido de matriz de adyacencia.
+ * Luiscarlo Rivera, 09-11020
+ * Jose Prado, 09-11006
+ * 
+ * Proyecto 1
+ */
 public class DiGraphMatriz implements Graph{
   
   private int numNodos, numArcos;

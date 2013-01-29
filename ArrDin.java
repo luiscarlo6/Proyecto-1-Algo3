@@ -1,10 +1,11 @@
 /**
- * Clase que implementa un arreglo dinamico.
+ * Clase que implementa un arreglo dinamico. 
+ * Luiscarlo Rivera, 09-11020
+ * Jose Prado, 09-11006
+ * 
+ * Proyecto 1
  */
-/*
- * Luiscarlo Rivera
- * Jose Prado
- */
+
 public class ArrDin<E>{
 	
 	private Object arr[] = null;

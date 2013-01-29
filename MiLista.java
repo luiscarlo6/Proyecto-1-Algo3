@@ -2,6 +2,10 @@
  * Clase que implementa la interfaz Lista
  * Esta es una clase parametrizada con tipo (clase) E; i.e., la
  * lista contiene elementos de tipo E.
+ * Luiscarlo Rivera, 09-11020
+ * Jose Prado, 09-11006
+ * 
+ * Proyecto 1
  */
 public class MiLista<E> implements Lista<E>{
     /**

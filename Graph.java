@@ -1,5 +1,9 @@
 /**
  * Interfaz que define el uso de un grafo.
+ * Luiscarlo Rivera, 09-11020
+ * Jose Prado, 09-11006
+ * 
+ * Proyecto 1
  */
 public interface Graph {
 	
